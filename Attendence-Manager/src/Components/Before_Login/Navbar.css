@@ -1,0 +1,236 @@
+.navbar-shell {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 30;
+  padding: 0;
+  background: rgba(248, 245, 239, 0.92);
+  backdrop-filter: blur(18px);
+  border-bottom: 1px solid rgba(22, 26, 40, 0.08);
+}
+
+.navbar {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 24px;
+  width: 100%;
+  min-height: var(--navbar-height);
+  margin: 0;
+  padding: 0 clamp(18px, 3vw, 32px);
+  background: transparent;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+}
+
+.brand-mark {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 14px;
+  background: #1d2842;
+  color: #ffffff;
+  font-size: 0.94rem;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  box-shadow: 0 14px 32px rgba(29, 40, 66, 0.16);
+}
+
+.brand-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.brand-copy strong {
+  color: #161a28;
+  font-size: 0.96rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.brand-copy span {
+  color: #707a91;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.menu-toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 5px;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid rgba(22, 26, 40, 0.1);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.72);
+  color: #161a28;
+}
+
+.menu-toggle span {
+  display: block;
+  width: 18px;
+  height: 2px;
+  border-radius: 999px;
+  background: currentColor;
+}
+
+.nav-panel {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 24px;
+  min-width: 0;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  justify-self: center;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nav-links a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 36px;
+  padding: 0 12px;
+  border-radius: 999px;
+  color: #5d6780;
+  font-size: 0.86rem;
+  font-weight: 600;
+  transition:
+    transform 0.2s ease,
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.nav-links a:hover,
+.nav-links a:focus-visible {
+  transform: translateY(-1px);
+  color: #161a28;
+  background: rgba(22, 26, 40, 0.06);
+}
+
+.nav-buttons {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  padding: 0 18px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  font-size: 0.84rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  transition:
+    transform 0.2s ease,
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.button:hover,
+.button:focus-visible {
+  transform: translateY(-1px);
+}
+
+.login_btn {
+  color: #161a28;
+  border-color: rgba(22, 26, 40, 0.1);
+  background: rgba(255, 255, 255, 0.76);
+}
+
+.login_btn:hover,
+.login_btn:focus-visible {
+  background: #ffffff;
+  border-color: rgba(22, 26, 40, 0.14);
+}
+
+.create_btn {
+  color: #ffffff;
+  background: #1d2842;
+  box-shadow: 0 16px 34px rgba(29, 40, 66, 0.14);
+}
+
+.create_btn:hover,
+.create_btn:focus-visible {
+  box-shadow: 0 20px 38px rgba(29, 40, 66, 0.18);
+}
+
+@media (max-width: 980px) {
+  .navbar-shell {
+    padding: 0;
+  }
+
+  .navbar {
+    grid-template-columns: auto auto;
+    width: 100%;
+    min-height: var(--navbar-height-mobile);
+    padding: 0 14px;
+  }
+
+  .menu-toggle {
+    display: inline-flex;
+    justify-self: end;
+  }
+
+  .nav-panel {
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 14px;
+    right: 14px;
+    display: none;
+    grid-template-columns: 1fr;
+    gap: 18px;
+    padding: 18px;
+    border: 1px solid rgba(22, 26, 40, 0.08);
+    border-radius: 24px;
+    background: rgba(255, 255, 255, 0.96);
+    box-shadow: 0 22px 52px rgba(23, 28, 43, 0.1);
+  }
+
+  .nav-panel.is-open {
+    display: grid;
+  }
+
+  .nav-links,
+  .nav-buttons {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .nav-links a,
+  .button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 560px) {
+  .brand-copy span {
+    display: none;
+  }
+}
