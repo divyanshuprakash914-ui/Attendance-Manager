@@ -1,0 +1,125 @@
+.dashboard-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  min-height: 88px;
+  padding: 20px 28px;
+  border-bottom: 1px solid var(--dashboard-line);
+}
+
+.dashboard-workspace-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 46px;
+  padding: 0 18px;
+  border: 1px solid var(--dashboard-line);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.8);
+  color: var(--dashboard-ink);
+  font-weight: 700;
+}
+
+.dashboard-workspace-caret {
+  color: var(--dashboard-ink-muted);
+  font-size: 0.9rem;
+}
+
+.dashboard-topbar-tools {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.dashboard-search {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: min(300px, 40vw);
+  min-height: 46px;
+  padding: 0 14px;
+  border: 1px solid var(--dashboard-line);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.82);
+}
+
+.dashboard-search-icon svg,
+.dashboard-alert-button svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.9;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.dashboard-search-icon {
+  display: inline-grid;
+  place-items: center;
+  color: var(--dashboard-ink-muted);
+}
+
+.dashboard-search input {
+  width: 100%;
+  border: 0;
+  outline: none;
+  background: transparent;
+  color: var(--dashboard-ink);
+}
+
+.dashboard-search input::placeholder {
+  color: var(--dashboard-ink-muted);
+}
+
+.dashboard-alert-button {
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--dashboard-line);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.82);
+  color: var(--dashboard-navy);
+}
+
+.dashboard-alert-dot {
+  position: absolute;
+  top: 10px;
+  right: 11px;
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--dashboard-gold-strong);
+  box-shadow: 0 0 0 3px var(--dashboard-bg-soft);
+}
+
+.dashboard-topbar-avatar {
+  display: inline-grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 16px;
+  background: var(--dashboard-navy);
+  color: #ffffff;
+  font-weight: 800;
+}
+
+@media (max-width: 760px) {
+  .dashboard-topbar {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 18px;
+  }
+
+  .dashboard-topbar-tools {
+    width: 100%;
+  }
+
+  .dashboard-search {
+    min-width: 0;
+    flex: 1;
+  }
+}

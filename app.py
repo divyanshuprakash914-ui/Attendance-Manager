@@ -9,8 +9,8 @@ BASE_URL = "https://my.newtonschool.co"
 
 # BEARER_TOKEN = "Z88wdmYVLW70v2bstLU9j9FjvwgW29"#(Samriddhi)
 # BEARER_TOKEN = "FpDyIyzTU0jfYyBqE6HsKxuLZYRnkN" (Apish)
-# BEARER_TOKEN = "gYydMJTDrJhTLAwQXBb1PiJ8IxrbpF" #(self)
-BEARER_TOKEN = "ysJqsiXzpq8AQzj1qVYjE9kdJ2Ig10" #(Rithull)
+BEARER_TOKEN = "gYydMJTDrJhTLAwQXBb1PiJ8IxrbpF" #(self)
+# BEARER_TOKEN = "ysJqsiXzpq8AQzj1qVYjE9kdJ2Ig10" #(Rithull)
 
 # BEARER_TOKEN = "MXQUagJ6pheDH22qComvCkuK9AC3Ey"   # Vani
 # BEARER_TOKEN = "kaCvJKNgq5EK5Z4dC2ueDKL7318xkn" #(shukla)
