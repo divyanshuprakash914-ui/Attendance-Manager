@@ -22,7 +22,7 @@ const footerGroups = [
     title: "Access",
     links: [
       { label: "Log in", href: "/login" },
-      { label: "Create account", href: "/login" },
+      { label: "Create account", href: "/create-account" },
       { label: "Book walkthrough", href: "/login" },
     ],
   },
@@ -79,7 +79,7 @@ export default function Footer() {
             <span className="footer-cta-kicker">Ready to launch?</span>
             <strong>Bring attendance into one cleaner daily workflow.</strong>
             <p>Move from scattered sheets and manual follow-up to one dependable operating layer.</p>
-            <Link to="/login" className="footer-cta-button">
+            <Link to="/create-account" className="footer-cta-button">
               Start with AttendEase
             </Link>
           </div>

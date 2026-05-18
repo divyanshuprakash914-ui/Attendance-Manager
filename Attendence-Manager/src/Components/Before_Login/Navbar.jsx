@@ -60,7 +60,7 @@ export default function Navbar_Before_Login() {
             <Link to={isLoginPage ? "/" : "/login"} className="button login_btn" onClick={closeMenu}>
               {isLoginPage ? "Back home" : "Log in"}
             </Link>
-            <Link to="/login" className="button create_btn" onClick={closeMenu}>
+            <Link to="/create-account" className="button create_btn" onClick={closeMenu}>
               Create account
             </Link>
           </div>

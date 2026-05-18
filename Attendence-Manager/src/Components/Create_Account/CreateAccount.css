@@ -1,0 +1,196 @@
+.create-account-page {
+  --auth-panel-start: #191513;
+  --auth-panel-end: #2b2320;
+  --auth-glow-primary: rgba(236, 170, 96, 0.22);
+  --auth-glow-secondary: rgba(255, 241, 225, 0.12);
+  --auth-glow-tertiary: rgba(202, 143, 122, 0.16);
+  --auth-scene-surface: rgba(44, 33, 30, 0.74);
+}
+
+.create-account-page .login-ball-mark {
+  border-color: #d49b63;
+}
+
+.create-account-page .login-ball-mark::before,
+.create-account-page .login-ball-mark::after,
+.create-account-page .login-ball-mark span::before,
+.create-account-page .login-ball-mark span::after {
+  border-color: #d49b63;
+}
+
+.create-account-intro {
+  margin: 12px 0 0;
+  max-width: 100%;
+  color: #7f8092;
+  font-size: 0.94rem;
+  line-height: 1.5;
+}
+
+.create-account-page .login-form-shell {
+  width: min(1040px, 100%);
+  padding: 34px 40px 24px;
+}
+
+.create-account-page .login-form-stage {
+  padding: 92px 24px 34px;
+}
+
+.create-account-page .login-form-shell h1 {
+  max-width: none;
+  font-size: clamp(2.8rem, 4vw, 3.65rem);
+}
+
+.create-account-auth-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.92fr) auto minmax(0, 1.08fr);
+  gap: 22px;
+  align-items: start;
+  margin-top: 28px;
+}
+
+.create-account-social-panel,
+.create-account-email-panel {
+  display: grid;
+  gap: 12px;
+}
+
+.create-account-panel-kicker {
+  color: #8c8aa3;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.create-account-social-panel h2 {
+  margin: 0;
+  color: #18193a;
+  font-size: clamp(1.35rem, 1.9vw, 1.8rem);
+  line-height: 1.08;
+  letter-spacing: -0.04em;
+}
+
+.create-account-social-panel .google-option {
+  margin-top: 2px;
+}
+
+.create-account-divider {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 42px;
+  min-height: 100%;
+}
+
+.create-account-divider::before {
+  content: "";
+  position: absolute;
+  top: 4px;
+  bottom: 4px;
+  width: 1px;
+  background: linear-gradient(180deg, rgba(219, 223, 234, 0.1), rgba(219, 223, 234, 0.9), rgba(219, 223, 234, 0.1));
+}
+
+.create-account-divider span {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border: 1px solid rgba(219, 223, 234, 0.9);
+  border-radius: 999px;
+  background: #ffffff;
+  color: #8d8ca1;
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: lowercase;
+}
+
+.create-account-form {
+  gap: 14px;
+}
+
+.create-account-form-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.create-account-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.create-account-page .login-legal-copy,
+.create-account-page .login-signup-copy {
+  margin-top: 0;
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+@media (max-width: 980px) {
+  .create-account-page .login-form-shell {
+    width: min(760px, 100%);
+    padding: 32px 28px 22px;
+  }
+
+  .create-account-page .login-form-stage {
+    padding: 98px 20px 28px;
+  }
+
+  .create-account-auth-grid {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+
+  .create-account-divider {
+    min-height: 32px;
+  }
+
+  .create-account-divider::before {
+    top: 50%;
+    bottom: auto;
+    left: 0;
+    right: 0;
+    width: auto;
+    height: 1px;
+    transform: translateY(-50%);
+    background: linear-gradient(90deg, rgba(219, 223, 234, 0.1), rgba(219, 223, 234, 0.9), rgba(219, 223, 234, 0.1));
+  }
+
+  .create-account-meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+}
+
+@media (max-width: 640px) {
+  .create-account-intro {
+    max-width: 100%;
+    font-size: 0.92rem;
+  }
+
+  .create-account-page .login-form-shell {
+    width: 100%;
+    padding: 26px 18px 20px;
+  }
+
+  .create-account-page .login-form-stage {
+    padding: 92px 16px 22px;
+  }
+
+  .create-account-social-panel h2 {
+    font-size: 1.3rem;
+  }
+
+  .create-account-form-row {
+    grid-template-columns: 1fr;
+  }
+}

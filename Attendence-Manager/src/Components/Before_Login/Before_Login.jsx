@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import "./Before_Login.css";
 import Footer from "./Footer";
 import Navbar_Before_Login from "./Navbar";
+import heroDemo from "../../assets/attendease-hero-demo.mov";
 
 const trustItems = [
   "Engineering colleges",
@@ -97,7 +98,7 @@ export default function BeforeLogin() {
             </p>
 
             <div className="hero-actions">
-              <Link to="/login" className="hero-button hero-button-primary">
+              <Link to="/create-account" className="hero-button hero-button-primary">
                 Start free
               </Link>
               <a href="#products" className="hero-button hero-button-secondary">
@@ -114,7 +115,7 @@ export default function BeforeLogin() {
             </div>
           </div>
 
-          <div className="hero-stage" aria-label="AttendEase motion-inspired showcase">
+          <div className="hero-stage" aria-label="AttendEase product showcase">
             <div className="hero-stage-shell">
               <div className="hero-stage-top">
                 <div className="stage-dots" aria-hidden="true">
@@ -123,47 +124,22 @@ export default function BeforeLogin() {
                   <span />
                 </div>
                 <span className="stage-label">AttendEase workspace</span>
-                <span className="stage-badge">Live sync</span>
+                <span className="stage-badge">Product demo</span>
               </div>
 
               <div className="hero-stage-body">
-                <article className="stage-hero-card">
-                  <span className="mini-kicker">Daily command layer</span>
-                  <h2>Attendance capture, risk visibility, and follow-up in one motion-ready flow.</h2>
-                  <div className="stage-hero-meta">
-                    <span>1,284 students marked today</span>
-                    <strong>18 items need review</strong>
-                  </div>
-                </article>
-
-                <div className="stage-motion-map" aria-hidden="true">
-                  <div className="motion-orb motion-orb-cyan" />
-                  <div className="motion-orb motion-orb-pink" />
-                  <div className="motion-orb motion-orb-violet" />
-                  <div className="motion-path motion-path-one" />
-                  <div className="motion-path motion-path-two" />
-                  <div className="motion-card motion-card-a">
-                    <strong>Section pulse</strong>
-                    <span>Realtime classroom stability</span>
-                  </div>
-                  <div className="motion-card motion-card-b">
-                    <strong>Mentor action</strong>
-                    <span>Low-attendance warning routed</span>
-                  </div>
-                  <div className="motion-card motion-card-c">
-                    <strong>Correction queue</strong>
-                    <span>Approval review updated</span>
-                  </div>
-                </div>
-
-                <div className="hero-marquee">
-                  <div className="hero-marquee-track">
-                    {[...heroHighlights, ...heroHighlights, ...heroHighlights].map((item, index) => (
-                      <span key={`${item}-${index}`} className="hero-marquee-pill">
-                        {item}
-                      </span>
-                    ))}
-                  </div>
+                <div className="hero-stage-video-frame">
+                  <video
+                    className="hero-stage-video"
+                    src={heroDemo}
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    preload="metadata"
+                  >
+                    Your browser does not support the video tag.
+                  </video>
                 </div>
               </div>
             </div>
@@ -312,7 +288,7 @@ export default function BeforeLogin() {
                 and cleaner reporting handoff for campus teams.
               </p>
 
-              <Link to="/login" className="hero-button hero-button-primary">
+              <Link to="/create-account" className="hero-button hero-button-primary">
                 Book a walkthrough
               </Link>
             </div>
