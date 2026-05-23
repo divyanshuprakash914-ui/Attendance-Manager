@@ -1,11 +1,11 @@
 export const sidebarItems = [
-  { label: "Overview", icon: "grid", active: true },
+  { label: "Overview", icon: "grid", path: "/dashboard" },
   { label: "Students", icon: "users" },
   { label: "Attendance", icon: "calendar" },
   { label: "Approvals", icon: "check" },
   { label: "Reports", icon: "chart" },
   { label: "Mentors", icon: "mentor" },
-  { label: "Settings", icon: "settings" },
+  { label: "Settings", icon: "settings", path: "/dashboard/settings" },
 ];
 
 export const dashboardStats = [

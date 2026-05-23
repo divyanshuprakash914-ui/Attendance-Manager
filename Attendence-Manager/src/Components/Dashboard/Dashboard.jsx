@@ -10,7 +10,7 @@ export default function Dashboard() {
   return (
     <div className="dashboard-page">
       <div className="dashboard-shell">
-        <DashboardSidebar items={sidebarItems} />
+        <DashboardSidebar items={sidebarItems} activeItem="Overview" />
 
         <div className="dashboard-main">
           <DashboardTopbar />
