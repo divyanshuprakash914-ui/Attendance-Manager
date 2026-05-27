@@ -1,0 +1,134 @@
+.dashboard-subject-table-card {
+  display: grid;
+  gap: 16px;
+  padding: 18px 16px 16px;
+  border: 1px solid rgba(96, 112, 146, 0.12);
+  border-radius: 18px;
+  background: #ffffff;
+  box-shadow: 0 12px 28px rgba(36, 41, 67, 0.05);
+  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+}
+
+.dashboard-subject-table-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(96, 112, 146, 0.18);
+  box-shadow: 0 18px 34px rgba(36, 41, 67, 0.08);
+}
+
+.dashboard-subject-table-head h2 {
+  margin: 0;
+  color: #1b2040;
+  font-size: 1rem;
+}
+
+.dashboard-subject-table {
+  display: grid;
+  border: 1px solid #edf0f5;
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.dashboard-subject-table-row {
+  display: grid;
+  grid-template-columns: minmax(220px, 1.45fr) 0.8fr 0.55fr minmax(150px, 0.95fr);
+  align-items: center;
+  gap: 14px;
+  min-height: 56px;
+  padding: 0 14px;
+  color: #364160;
+  font-size: 0.8rem;
+  background: #ffffff;
+}
+
+.dashboard-subject-table-row + .dashboard-subject-table-row {
+  border-top: 1px solid #edf0f5;
+}
+
+.dashboard-subject-table-row.is-head {
+  background: #f8fafc;
+  color: #6a7390;
+  font-size: 0.74rem;
+  font-weight: 700;
+  min-height: 42px;
+}
+
+.dashboard-subject-table-subject {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.dashboard-subject-table-subject i {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  flex-shrink: 0;
+}
+
+.dashboard-subject-table-subject div {
+  display: grid;
+  gap: 8px;
+  min-width: 0;
+}
+
+.dashboard-subject-table-subject strong {
+  color: #1b2040;
+  font-size: 0.84rem;
+  line-height: 1.25;
+  overflow-wrap: anywhere;
+}
+
+.dashboard-subject-progress {
+  height: 8px;
+  border-radius: 999px;
+  background: #edf0f5;
+  overflow: hidden;
+}
+
+.dashboard-subject-progress div {
+  height: 100%;
+  border-radius: 999px;
+  transition: width 0.45s ease;
+}
+
+.dashboard-subject-status {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 30px;
+  padding: 0 12px;
+  border-radius: 999px;
+  font-size: 0.74rem;
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.dashboard-subject-status.status-danger {
+  background: #fff2f3;
+  color: #e15268;
+}
+
+.dashboard-subject-status.status-safe {
+  background: #ecfaf3;
+  color: #1d9a5e;
+}
+
+@media (max-width: 880px) {
+  .dashboard-subject-table-row {
+    grid-template-columns: 1fr;
+    align-items: start;
+    gap: 8px;
+    padding: 14px;
+  }
+
+  .dashboard-subject-table-row.is-head {
+    display: none;
+  }
+
+  .dashboard-subject-status {
+    justify-self: start;
+  }
+}

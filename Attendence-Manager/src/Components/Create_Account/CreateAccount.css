@@ -89,7 +89,7 @@
   top: 4px;
   bottom: 4px;
   width: 1px;
-  background: linear-gradient(180deg, rgba(219, 223, 234, 0.1), rgba(219, 223, 234, 0.9), rgba(219, 223, 234, 0.1));
+  background: rgba(219, 223, 234, 0.9);
 }
 
 .create-account-divider span {
@@ -161,7 +161,7 @@
     width: auto;
     height: 1px;
     transform: translateY(-50%);
-    background: linear-gradient(90deg, rgba(219, 223, 234, 0.1), rgba(219, 223, 234, 0.9), rgba(219, 223, 234, 0.1));
+    background: rgba(219, 223, 234, 0.9);
   }
 
   .create-account-meta {

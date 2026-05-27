@@ -1,0 +1,206 @@
+.dashboard-trend-card {
+  position: relative;
+  overflow: hidden;
+  padding: 18px 16px 18px;
+  border: 1px solid rgba(96, 112, 146, 0.12);
+  border-radius: 18px;
+  background: #ffffff;
+  box-shadow: 0 12px 28px rgba(36, 41, 67, 0.05);
+  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+}
+
+.dashboard-trend-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(96, 112, 146, 0.18);
+  box-shadow: 0 18px 34px rgba(36, 41, 67, 0.08);
+}
+
+.dashboard-trend-card::after {
+  content: "";
+  position: absolute;
+  inset: 0 auto auto 0;
+  width: 160px;
+  height: 160px;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(124, 77, 255, 0.08), transparent 70%);
+  pointer-events: none;
+}
+
+.dashboard-trend-card-head h2 {
+  margin: 0;
+  color: #1b2040;
+  font-size: 1rem;
+  line-height: 1.25;
+}
+
+.dashboard-trend-card-head h2 span {
+  color: #45516f;
+  font-weight: 500;
+}
+
+.dashboard-trend-card-head p {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 12px 0 0;
+  color: #6d57dd;
+  font-size: 0.84rem;
+  font-weight: 600;
+}
+
+.dashboard-trend-card-head p::before {
+  content: "";
+  width: 16px;
+  height: 10px;
+  border-radius: 3px;
+  background: #7c4dff;
+}
+
+.dashboard-trend-chart-wrap {
+  position: relative;
+  margin-top: 10px;
+}
+
+.dashboard-trend-svg {
+  width: 100%;
+  height: auto;
+}
+
+.dashboard-trend-gridline {
+  stroke: rgba(112, 125, 156, 0.12);
+  stroke-width: 1;
+}
+
+.dashboard-trend-axis-label {
+  fill: #7a86a7;
+  font-size: 11px;
+}
+
+.dashboard-trend-area {
+  fill: rgba(124, 77, 255, 0.08);
+  transform-origin: bottom;
+  transform: scaleY(0);
+  opacity: 0;
+  animation: dashboardTrendAreaIn 0.92s ease forwards 0.24s;
+}
+
+.dashboard-trend-line {
+  fill: none;
+  stroke: #7c4dff;
+  stroke-width: 3.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: var(--dashboard-line-length);
+  stroke-dashoffset: var(--dashboard-line-length);
+  animation: dashboardTrendLineIn 1.28s cubic-bezier(0.25, 0.9, 0.3, 1) forwards;
+}
+
+.dashboard-trend-dot {
+  fill: #7c4dff;
+  transform-origin: center;
+  transform: scale(0);
+  animation: dashboardTrendPointIn 0.56s ease forwards;
+  animation-delay: var(--dashboard-point-delay);
+}
+
+.dashboard-trend-value {
+  fill: #1f2946;
+  font-size: 11px;
+  font-weight: 700;
+  text-anchor: middle;
+  opacity: 0;
+  animation: dashboardTrendValueIn 0.52s ease forwards;
+  animation-delay: calc(var(--dashboard-point-delay) + 0.12s);
+}
+
+.dashboard-trend-labels {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.dashboard-trend-labels span {
+  color: #45516f;
+  font-size: 0.75rem;
+  text-align: center;
+}
+
+.dashboard-trend-card:hover .dashboard-trend-line {
+  animation: dashboardTrendLineHover 1.18s cubic-bezier(0.25, 0.9, 0.3, 1) forwards;
+}
+
+.dashboard-trend-card:hover .dashboard-trend-dot {
+  animation: dashboardTrendPointHover 0.58s ease forwards;
+}
+
+@keyframes dashboardTrendLineIn {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes dashboardTrendLineHover {
+  0% {
+    stroke-dashoffset: var(--dashboard-line-length);
+  }
+
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes dashboardTrendAreaIn {
+  to {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}
+
+@keyframes dashboardTrendPointIn {
+  0% {
+    transform: scale(0);
+  }
+
+  70% {
+    transform: scale(1.12);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes dashboardTrendPointHover {
+  0% {
+    transform: scale(0.65);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes dashboardTrendValueIn {
+  from {
+    opacity: 0;
+    transform: translateY(7px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dashboard-trend-area,
+  .dashboard-trend-line,
+  .dashboard-trend-dot,
+  .dashboard-trend-value {
+    animation: none;
+    opacity: 1;
+    transform: none;
+    stroke-dashoffset: 0;
+  }
+}

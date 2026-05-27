@@ -37,19 +37,11 @@
 }
 
 .login-shell-solo .login-content-panel {
-  background:
-    radial-gradient(circle at top, rgba(244, 235, 225, 0.34), transparent 34%),
-    linear-gradient(180deg, #fffefc 0%, #ffffff 32%);
+  background: #fffefc;
 }
 
 .login-shell-solo .login-content-panel::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(circle at 18% 24%, rgba(234, 218, 201, 0.12), transparent 24%),
-    radial-gradient(circle at 82% 18%, rgba(248, 238, 226, 0.24), transparent 28%);
-  pointer-events: none;
+  content: none;
 }
 
 .login-wordmark {
@@ -193,11 +185,7 @@
   justify-content: center;
   padding: 48px 32px;
   overflow: hidden;
-  background:
-    radial-gradient(circle at 18% 18%, var(--auth-glow-tertiary), transparent 24%),
-    radial-gradient(circle at 82% 18%, var(--auth-glow-primary), transparent 28%),
-    radial-gradient(circle at 26% 84%, var(--auth-glow-secondary), transparent 26%),
-    linear-gradient(180deg, var(--auth-panel-start) 0%, var(--auth-panel-end) 100%);
+  background: var(--auth-panel-end);
 }
 
 .login-art-panel::before,
@@ -210,23 +198,20 @@
 
 .login-art-panel::before {
   content: "";
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent 24%, transparent 76%, rgba(255, 255, 255, 0.04));
+  background: rgba(255, 255, 255, 0.03);
 }
 
 .art-grid {
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-  background-size: 38px 38px;
-  opacity: 0.18;
-  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.5));
+  background-image: none;
+  opacity: 0;
+  mask-image: none;
 }
 
 .art-glow-top {
   inset: -10% -12% auto auto;
   width: 78%;
   height: 44%;
-  background: radial-gradient(circle, var(--auth-glow-primary), transparent 70%);
+  background: rgba(237, 189, 122, 0.12);
   filter: blur(8px);
   animation: aura-shift 14s ease-in-out infinite;
 }
@@ -235,7 +220,7 @@
   inset: auto auto -14% -10%;
   width: 84%;
   height: 42%;
-  background: radial-gradient(circle, var(--auth-glow-secondary), transparent 72%);
+  background: rgba(255, 244, 232, 0.1);
   filter: blur(10px);
   animation: aura-shift 16s ease-in-out infinite reverse;
 }
@@ -321,7 +306,7 @@
   padding: 28px;
   border: 1px solid var(--auth-scene-border);
   border-radius: 34px;
-  background: linear-gradient(180deg, rgba(48, 38, 34, 0.9), var(--auth-scene-surface));
+  background: rgba(48, 38, 34, 0.92);
   box-shadow:
     0 34px 70px rgba(4, 10, 32, 0.34),
     inset 0 1px 0 rgba(255, 255, 255, 0.08);
@@ -334,7 +319,7 @@
   position: absolute;
   inset: 1px;
   border-radius: inherit;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), transparent 34%);
+  background: rgba(255, 255, 255, 0.03);
   pointer-events: none;
 }
 
@@ -504,7 +489,7 @@
   padding: 20px;
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 30px;
-  background: linear-gradient(180deg, rgba(13, 25, 58, 0.94), rgba(13, 24, 52, 0.9));
+  background: rgba(13, 24, 52, 0.94);
   box-shadow:
     0 34px 72px rgba(5, 12, 34, 0.42),
     inset 0 1px 0 rgba(255, 255, 255, 0.08);
@@ -518,7 +503,7 @@
   position: absolute;
   inset: 1px;
   border-radius: inherit;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent 38%);
+  background: rgba(255, 255, 255, 0.03);
   pointer-events: none;
 }
 
@@ -571,7 +556,7 @@
   padding: 20px;
   border: 1px solid rgba(129, 180, 255, 0.16);
   border-radius: 24px;
-  background: linear-gradient(135deg, rgba(62, 110, 255, 0.28), rgba(85, 218, 255, 0.14));
+  background: rgba(62, 110, 255, 0.2);
 }
 
 .dashboard-hero span {
@@ -696,7 +681,7 @@
   display: block;
   width: 100%;
   border-radius: 999px;
-  background: linear-gradient(180deg, #79b4ff 0%, #4ed9ff 100%);
+  background: #67c5ff;
   box-shadow: 0 0 22px rgba(88, 187, 255, 0.24);
   animation: bar-rise 1.1s ease both;
 }
@@ -729,7 +714,7 @@
   height: 10px;
   margin-top: 5px;
   border-radius: 999px;
-  background: linear-gradient(180deg, #79b4ff 0%, #4ed9ff 100%);
+  background: #67c5ff;
   box-shadow: 0 0 16px rgba(86, 183, 255, 0.45);
 }
 

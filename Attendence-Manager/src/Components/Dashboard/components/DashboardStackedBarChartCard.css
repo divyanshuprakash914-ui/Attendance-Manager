@@ -1,0 +1,124 @@
+.dashboard-stacked-chart-card {
+  padding: 16px 18px 18px;
+  border: 1px solid var(--dashboard-line);
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow: 0 10px 24px rgba(20, 24, 35, 0.05);
+  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+}
+
+.dashboard-stacked-chart-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(22, 26, 40, 0.12);
+  box-shadow: 0 16px 30px rgba(20, 24, 35, 0.08);
+}
+
+.dashboard-stacked-chart-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.dashboard-stacked-chart-head h2 {
+  margin: 0;
+  color: var(--dashboard-ink);
+  font-size: 1rem;
+  line-height: 1.25;
+}
+
+.dashboard-stacked-chart-head > div > span {
+  display: block;
+  margin-top: 2px;
+  color: var(--dashboard-ink-muted);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.dashboard-stacked-chart-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.dashboard-stacked-chart-legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--dashboard-ink-soft);
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.dashboard-stacked-chart-legend i {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+}
+
+.dashboard-stacked-chart-frame {
+  margin-top: 14px;
+}
+
+.dashboard-stacked-chart-svg {
+  width: 100%;
+  height: auto;
+}
+
+.dashboard-stacked-gridline {
+  stroke: rgba(22, 26, 40, 0.08);
+  stroke-width: 1;
+}
+
+.dashboard-stacked-axis-label {
+  fill: var(--dashboard-ink-muted);
+  font-size: 11px;
+}
+
+.dashboard-stacked-pending {
+  fill: #465258;
+}
+
+.dashboard-stacked-verified {
+  fill: #16bfb2;
+}
+
+.dashboard-stacked-value {
+  fill: rgba(255, 255, 255, 0.92);
+  font-size: 10px;
+  font-weight: 700;
+  text-anchor: middle;
+}
+
+.dashboard-stacked-value-light {
+  fill: #fefefe;
+}
+
+.dashboard-stacked-chart-labels {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 6px;
+}
+
+.dashboard-stacked-chart-labels span {
+  display: grid;
+  justify-items: center;
+  gap: 2px;
+}
+
+.dashboard-stacked-chart-labels small {
+  color: var(--dashboard-ink-muted);
+  font-size: 0.67rem;
+  line-height: 1.2;
+  text-align: center;
+}
+
+@media (max-width: 760px) {
+  .dashboard-stacked-chart-head {
+    flex-direction: column;
+  }
+}

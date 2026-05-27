@@ -1,0 +1,119 @@
+.dashboard-mini-bars-card {
+  padding: 22px 20px 20px;
+  border: 1px solid var(--dashboard-line);
+  border-radius: 22px;
+  background: #ffffff;
+  box-shadow: 0 14px 28px rgba(36, 41, 67, 0.045);
+  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+}
+
+.dashboard-mini-bars-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(22, 26, 40, 0.12);
+  box-shadow: 0 18px 34px rgba(36, 41, 67, 0.065);
+}
+
+.dashboard-mini-bars-head h2 {
+  margin: 0;
+  color: var(--dashboard-ink);
+  font-size: 0.94rem;
+  line-height: 1.25;
+}
+
+.dashboard-mini-bars-head span {
+  display: block;
+  margin-top: 2px;
+  color: var(--dashboard-ink-muted);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.dashboard-mini-bars-chart {
+  display: grid;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.dashboard-mini-bars-axis {
+  display: flex;
+  justify-content: space-between;
+  color: var(--dashboard-ink-muted);
+  font-size: 0.68rem;
+}
+
+.dashboard-mini-bars-columns {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 10px;
+  align-items: end;
+  min-height: 138px;
+}
+
+.dashboard-mini-bar-group {
+  display: grid;
+  justify-items: center;
+  gap: 8px;
+}
+
+.dashboard-mini-bar-value {
+  color: var(--dashboard-ink-muted);
+  font-size: 0.66rem;
+}
+
+.dashboard-mini-bar-rail {
+  display: flex;
+  align-items: end;
+  width: 100%;
+  max-width: 26px;
+  height: 88px;
+  border-radius: 6px 6px 0 0;
+  background: #eef2f5;
+  overflow: hidden;
+}
+
+.dashboard-mini-bar-fill {
+  width: 100%;
+  border-radius: 6px 6px 0 0;
+  background: #18b8b2;
+}
+
+.dashboard-mini-bar-group small {
+  color: var(--dashboard-ink-muted);
+  font-size: 0.62rem;
+  text-align: center;
+  line-height: 1.2;
+}
+
+.dashboard-mini-bars-insights {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid #eef2f6;
+}
+
+.dashboard-mini-bars-insight {
+  display: grid;
+  gap: 4px;
+}
+
+.dashboard-mini-bars-insight span {
+  color: var(--dashboard-ink-muted);
+  font-size: 0.7rem;
+  line-height: 1.35;
+}
+
+.dashboard-mini-bars-insight strong {
+  color: var(--dashboard-ink);
+  font-size: 0.88rem;
+  line-height: 1.2;
+}
+
+@media (max-width: 760px) {
+  .dashboard-mini-bars-insights {
+    grid-template-columns: 1fr;
+  }
+}

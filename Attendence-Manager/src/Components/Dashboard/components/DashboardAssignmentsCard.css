@@ -1,0 +1,241 @@
+@property --assignment-progress-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+.dashboard-assignments-card {
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  gap: 16px;
+  padding: 18px 16px 16px;
+  border: 1px solid rgba(96, 112, 146, 0.12);
+  border-radius: 18px;
+  background: #ffffff;
+  box-shadow: 0 12px 28px rgba(36, 41, 67, 0.05);
+  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+}
+
+.dashboard-assignments-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(96, 112, 146, 0.18);
+  box-shadow: 0 18px 34px rgba(36, 41, 67, 0.08);
+}
+
+.dashboard-assignments-card::after {
+  content: "";
+  position: absolute;
+  inset: auto -30px -40px auto;
+  width: 180px;
+  height: 180px;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(124, 77, 255, 0.1), transparent 72%);
+  pointer-events: none;
+}
+
+.dashboard-assignments-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.dashboard-assignments-head > div {
+  min-width: 0;
+}
+
+.dashboard-assignments-head h2 {
+  margin: 0;
+  color: #1b2040;
+  font-size: 1rem;
+  text-wrap: balance;
+}
+
+.dashboard-assignments-head p {
+  margin: 6px 0 0;
+  color: #7a86a7;
+  font-size: 0.84rem;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+  max-width: 28ch;
+}
+
+.dashboard-assignments-head span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+  padding: 0 10px;
+  border: 1px solid #d7cbff;
+  border-radius: 999px;
+  color: #7c4dff;
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.dashboard-assignments-body {
+  display: grid;
+  grid-template-columns: minmax(160px, 180px) minmax(0, 1fr);
+  gap: 18px;
+  align-items: start;
+}
+
+.dashboard-assignments-donut-wrap {
+  display: grid;
+  place-items: center;
+  min-width: 0;
+  padding: 10px 0 0;
+}
+
+.dashboard-assignments-donut {
+  display: grid;
+  place-items: center;
+  width: 118px;
+  height: 118px;
+  border-radius: 999px;
+  --assignment-progress-angle: 0deg;
+  background: conic-gradient(#7c4dff 0deg var(--assignment-progress-angle), #efeaff var(--assignment-progress-angle) 360deg);
+  animation: dashboardAssignmentFill 1.28s cubic-bezier(0.25, 0.9, 0.3, 1) forwards 0.18s;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.86);
+}
+
+.dashboard-assignments-donut-inner {
+  display: grid;
+  place-items: center;
+  width: 88px;
+  height: 88px;
+  border-radius: 999px;
+  background: #ffffff;
+}
+
+.dashboard-assignments-donut-inner strong {
+  color: #1b2040;
+  font-size: 1.4rem;
+  line-height: 1;
+}
+
+.dashboard-assignments-donut-inner small {
+  color: #7a86a7;
+  font-size: 0.76rem;
+}
+
+.dashboard-assignments-list {
+  display: grid;
+  gap: 14px;
+  min-width: 0;
+}
+
+.dashboard-assignments-item {
+  display: grid;
+  gap: 8px;
+  min-width: 0;
+}
+
+.dashboard-assignments-item-copy {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.dashboard-assignments-item-copy span,
+.dashboard-assignments-item-copy strong {
+  color: #364160;
+  font-size: 0.84rem;
+}
+
+.dashboard-assignments-item-copy span {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.dashboard-assignments-item-copy strong {
+  white-space: nowrap;
+}
+
+.dashboard-assignments-track {
+  height: 4px;
+  border-radius: 999px;
+  background: #edf0f5;
+  overflow: hidden;
+}
+
+.dashboard-assignments-track div {
+  width: var(--assignment-item-progress);
+  height: 100%;
+  border-radius: 999px;
+  background: var(--assignment-item-color);
+  transform-origin: left;
+  transform: scaleX(0);
+  animation: dashboardAssignmentBarGrow 0.98s ease forwards;
+  animation-delay: var(--assignment-item-delay);
+}
+
+.dashboard-assignments-card:hover .dashboard-assignments-donut {
+  animation: dashboardAssignmentRefill 1.1s cubic-bezier(0.25, 0.9, 0.3, 1) forwards;
+}
+
+.dashboard-assignments-card:hover .dashboard-assignments-track div {
+  animation: dashboardAssignmentBarReplay 0.82s ease forwards;
+}
+
+@keyframes dashboardAssignmentFill {
+  to {
+    --assignment-progress-angle: var(--assignment-progress-target);
+  }
+}
+
+@keyframes dashboardAssignmentRefill {
+  0% {
+    --assignment-progress-angle: 0deg;
+  }
+
+  100% {
+    --assignment-progress-angle: var(--assignment-progress-target);
+  }
+}
+
+@keyframes dashboardAssignmentBarGrow {
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes dashboardAssignmentBarReplay {
+  0% {
+    transform: scaleX(0.18);
+  }
+
+  100% {
+    transform: scaleX(1);
+  }
+}
+
+@media (max-width: 1320px) {
+  .dashboard-assignments-body {
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+
+  .dashboard-assignments-list {
+    width: 100%;
+  }
+}
+
+@media (max-width: 760px) {
+  .dashboard-assignments-head {
+    flex-direction: column;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dashboard-assignments-donut,
+  .dashboard-assignments-track div {
+    animation: none;
+    transform: none;
+  }
+
+  .dashboard-assignments-donut {
+    --assignment-progress-angle: var(--assignment-progress-target);
+  }
+}

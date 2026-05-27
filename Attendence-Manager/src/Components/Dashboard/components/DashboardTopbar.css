@@ -6,6 +6,8 @@
   min-height: 88px;
   padding: 20px 28px;
   border-bottom: 1px solid var(--dashboard-line);
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(18px);
 }
 
 .dashboard-workspace-pill {
@@ -16,9 +18,17 @@
   padding: 0 18px;
   border: 1px solid var(--dashboard-line);
   border-radius: 16px;
-  background: rgba(255, 255, 255, 0.8);
+  background: #ffffff;
   color: var(--dashboard-ink);
   font-weight: 700;
+  box-shadow: 0 10px 20px rgba(20, 24, 35, 0.04);
+  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+}
+
+.dashboard-workspace-pill:hover {
+  transform: translateY(-1px);
+  border-color: rgba(22, 26, 40, 0.12);
+  box-shadow: 0 16px 26px rgba(20, 24, 35, 0.06);
 }
 
 .dashboard-workspace-caret {
@@ -41,7 +51,15 @@
   padding: 0 14px;
   border: 1px solid var(--dashboard-line);
   border-radius: 16px;
-  background: rgba(255, 255, 255, 0.82);
+  background: #ffffff;
+  box-shadow: 0 10px 20px rgba(20, 24, 35, 0.04);
+  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+}
+
+.dashboard-search:hover {
+  transform: translateY(-1px);
+  border-color: rgba(22, 26, 40, 0.12);
+  box-shadow: 0 16px 26px rgba(20, 24, 35, 0.06);
 }
 
 .dashboard-search-icon svg,
@@ -81,8 +99,16 @@
   height: 44px;
   border: 1px solid var(--dashboard-line);
   border-radius: 16px;
-  background: rgba(255, 255, 255, 0.82);
+  background: #ffffff;
   color: var(--dashboard-navy);
+  box-shadow: 0 10px 20px rgba(20, 24, 35, 0.04);
+  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+}
+
+.dashboard-alert-button:hover {
+  transform: translateY(-1px);
+  border-color: rgba(22, 26, 40, 0.12);
+  box-shadow: 0 16px 26px rgba(20, 24, 35, 0.06);
 }
 
 .dashboard-alert-dot {
@@ -102,9 +128,16 @@
   width: 44px;
   height: 44px;
   border-radius: 16px;
-  background: var(--dashboard-navy);
+  background: #232830;
   color: #ffffff;
   font-weight: 800;
+  box-shadow: 0 12px 22px rgba(20, 24, 35, 0.12);
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+
+.dashboard-topbar-avatar:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 18px 28px rgba(20, 24, 35, 0.16);
 }
 
 @media (max-width: 760px) {

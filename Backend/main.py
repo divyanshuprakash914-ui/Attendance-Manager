@@ -1,5 +1,6 @@
 import os
 from dotenv import load_dotenv
+from routers import dashboard
 
 load_dotenv()
 
@@ -27,6 +28,7 @@ app.add_middleware(
 
 app.include_router(google_auth_router)
 app.include_router(email_auth_router)
+app.include_router(dashboard.router)
 
 
 @app.get("/")
@@ -34,3 +36,5 @@ def home():
     return {
         "message": "FastAPI Backend is running."
     }
+
+
