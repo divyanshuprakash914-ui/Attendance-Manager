@@ -1,6 +1,7 @@
+import { getAvatarInitials } from "../../Settings_Page/profileStorage";
 import "./DashboardTopbar.css";
 
-export default function DashboardTopbar() {
+export default function DashboardTopbar({ profileName = "User" }) {
   return (
     <header className="dashboard-topbar">
       <button type="button" className="dashboard-workspace-pill">
@@ -29,7 +30,7 @@ export default function DashboardTopbar() {
           <span className="dashboard-alert-dot" />
         </button>
 
-        <div className="dashboard-topbar-avatar">DP</div>
+        <div className="dashboard-topbar-avatar">{getAvatarInitials(profileName)}</div>
       </div>
     </header>
   );

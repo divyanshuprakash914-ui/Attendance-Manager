@@ -12,7 +12,7 @@ export default function DashboardAssignmentsCard({
   actionLabel = "Go to Assignments Solver",
   actionPath,
 }) {
-  const progress = (completed / total) * 100;
+  const progress = total > 0 ? (completed / total) * 100 : 0;
 
   return (
     <article className="dashboard-assignments-card">
@@ -41,23 +41,32 @@ export default function DashboardAssignmentsCard({
         </div>
 
         <div className="dashboard-assignments-list">
-          {items.map((item, index) => (
-            <div key={item.label} className="dashboard-assignments-item">
-              <div className="dashboard-assignments-item-copy">
-                <span>{item.label}</span>
-                <strong>{item.value}</strong>
+          {items.length ? (
+            items.map((item, index) => (
+              <div key={item.label} className="dashboard-assignments-item">
+                <div className="dashboard-assignments-item-copy">
+                  <span>{item.label}</span>
+                  <strong>{item.value}</strong>
+                </div>
+                <div className="dashboard-assignments-track">
+                  <div
+                    style={{
+                      "--assignment-item-progress": `${item.progress}%`,
+                      "--assignment-item-color": item.color,
+                      "--assignment-item-delay": `${index * 0.08}s`,
+                    }}
+                  />
+                </div>
               </div>
-              <div className="dashboard-assignments-track">
-                <div
-                  style={{
-                    "--assignment-item-progress": `${item.progress}%`,
-                    "--assignment-item-color": item.color,
-                    "--assignment-item-delay": `${index * 0.08}s`,
-                  }}
-                />
+            ))
+          ) : (
+            <div className="dashboard-assignments-item">
+              <div className="dashboard-assignments-item-copy">
+                <span>No live assignment items yet</span>
+                <strong>0 / 0</strong>
               </div>
             </div>
-          ))}
+          )}
         </div>
       </div>
 

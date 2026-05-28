@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 
+import { getAvatarInitials } from "../../Settings_Page/profileStorage";
 import DashboardIcon from "./DashboardIcon";
 import "./DashboardSidebar.css";
 
@@ -9,7 +10,7 @@ export default function DashboardSidebar({
   profileName = "Vani",
   profileRole = "Student",
 }) {
-  const avatarLetter = profileName?.charAt(0)?.toUpperCase() || "V";
+  const avatarLetter = getAvatarInitials(profileName);
 
   return (
     <aside className="dashboard-sidebar">

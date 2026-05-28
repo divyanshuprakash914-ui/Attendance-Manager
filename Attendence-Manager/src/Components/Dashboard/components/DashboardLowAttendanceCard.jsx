@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "./DashboardLowAttendanceCard.css";
 
 function buildSegments(segments) {
-  const total = segments.reduce((sum, item) => sum + item.value, 0);
+  const total = segments.reduce((sum, item) => sum + item.value, 0) || 1;
   const radius = 58;
   const circumference = 2 * Math.PI * radius;
   let offset = 0;
@@ -62,17 +62,27 @@ export default function DashboardLowAttendanceCard({
         </div>
 
         <div className="dashboard-low-attendance-list">
-          {segments.map((segment, index) => (
-            <div key={segment.label} className="dashboard-low-attendance-item">
-              <div className="dashboard-low-attendance-subject">
-                <i style={{ backgroundColor: segment.color }} aria-hidden="true" />
-                <span>{segment.label}</span>
+          {segments.length ? (
+            segments.map((segment, index) => (
+              <div key={segment.label} className="dashboard-low-attendance-item">
+                <div className="dashboard-low-attendance-subject">
+                  <i style={{ backgroundColor: segment.color }} aria-hidden="true" />
+                  <span>{segment.label}</span>
+                </div>
+                <strong style={{ "--dashboard-item-delay": `${index * 0.06}s` }}>
+                  {segment.value.toFixed(1)}%
+                </strong>
               </div>
-              <strong style={{ "--dashboard-item-delay": `${index * 0.06}s` }}>
-                {segment.value.toFixed(1)}%
-              </strong>
+            ))
+          ) : (
+            <div className="dashboard-low-attendance-item">
+              <div className="dashboard-low-attendance-subject">
+                <i style={{ backgroundColor: "#1db954" }} aria-hidden="true" />
+                <span>No live risks right now</span>
+              </div>
+              <strong>0</strong>
             </div>
-          ))}
+          )}
         </div>
       </div>
 

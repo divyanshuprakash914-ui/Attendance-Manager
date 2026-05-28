@@ -1,15 +1,9 @@
+import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 
-function getInitials(name) {
-  return name
-    .split(" ")
-    .map((part) => part[0])
-    .join("")
-    .slice(0, 2)
-    .toUpperCase();
-}
+import { getAvatarInitials, saveStoredProfileRecord } from "../profileStorage";
 
-export default function SettingsProfilePanel({ initialProfile }) {
+export default function SettingsProfilePanel({ initialProfile, profileUnlocked = false }) {
   const [form, setForm] = useState(initialProfile);
   const [saved, setSaved] = useState(false);
 
@@ -36,6 +30,7 @@ export default function SettingsProfilePanel({ initialProfile }) {
 
   function handleSubmit(event) {
     event.preventDefault();
+    saveStoredProfileRecord(form);
     setSaved(true);
   }
 
@@ -52,7 +47,7 @@ export default function SettingsProfilePanel({ initialProfile }) {
 
       <div className="settings-profile-identity">
         <div className="settings-profile-identity-main">
-          <div className="settings-profile-avatar">{getInitials(form.name)}</div>
+          <div className="settings-profile-avatar">{getAvatarInitials(form.name)}</div>
 
           <div className="settings-profile-identity-copy">
             <strong>{form.name}</strong>
@@ -114,9 +109,17 @@ export default function SettingsProfilePanel({ initialProfile }) {
 
       <div className="settings-panel-footer">
         <p>These details appear across reports, approvals, and team coordination screens.</p>
-        <button type="submit" className="settings-primary-button">
-          Save changes
-        </button>
+        <div className="settings-panel-footer-actions">
+          {profileUnlocked ? (
+            <Link to="/dashboard" className="settings-secondary-button settings-button-link">
+              Go to main dashboard
+            </Link>
+          ) : null}
+
+          <button type="submit" className="settings-primary-button">
+            Save changes
+          </button>
+        </div>
       </div>
     </form>
   );

@@ -3,16 +3,18 @@ import DashboardMiniBarsCard from "../../Dashboard/components/DashboardMiniBarsC
 import DashboardOverviewStatCard from "../../Dashboard/components/DashboardOverviewStatCard";
 import DashboardLowAttendanceCard from "../../Dashboard/components/DashboardLowAttendanceCard";
 import DashboardSubjectGroupCard from "../../Dashboard/components/DashboardSubjectGroupCard";
-import { subjectsPageData as data } from "../DashboardPagesData";
 import DashboardListPanel from "../components/DashboardListPanel";
 import SubjectsGuidanceCard from "../components/SubjectsGuidanceCard";
 import DashboardTablePanel from "../components/DashboardTablePanel";
 import DashboardWorkspaceLayout from "../components/DashboardWorkspaceLayout";
+import useDashboardPageData from "../useDashboardPageData";
 import "./SubjectsPage.css";
 
-export default function SubjectsPage() {
+function SubjectsPageContent() {
+  const { subjectsPage: data } = useDashboardPageData();
+
   return (
-    <DashboardWorkspaceLayout activeItem="Subjects" contentClassName="subjects-dashboard-content">
+    <>
       <section className="subjects-hero">
         <div className="subjects-hero-copy">
           <h1>Subject health</h1>
@@ -43,6 +45,14 @@ export default function SubjectsPage() {
         <DashboardMiniBarsCard {...data.weeklyLoad} className="subjects-load-card" />
         <DashboardDonutCard {...data.creditMix} className="subjects-credit-card" />
       </section>
+    </>
+  );
+}
+
+export default function SubjectsPage() {
+  return (
+    <DashboardWorkspaceLayout activeItem="Subjects" contentClassName="subjects-dashboard-content">
+      <SubjectsPageContent />
     </DashboardWorkspaceLayout>
   );
 }

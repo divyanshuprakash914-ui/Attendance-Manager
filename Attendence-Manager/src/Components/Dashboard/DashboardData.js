@@ -1,5 +1,5 @@
 export const sidebarItems = [
-  { label: "Overview", icon: "home", path: "/dashboard" },
+  { label: "Dashboard", icon: "home", path: "/dashboard" },
   { label: "Subjects", icon: "book", path: "/dashboard/subjects" },
   { label: "Timetable", icon: "calendar", path: "/dashboard/timetable" },
   { label: "Attendance", icon: "attendance", path: "/dashboard/attendance" },
@@ -8,6 +8,11 @@ export const sidebarItems = [
   { label: "Alerts", icon: "bell", path: "/dashboard/alerts" },
   { label: "Leave Tracker", icon: "leave", path: "/dashboard/leave-tracker" },
   { label: "Assignments Solver", icon: "spark", badge: "New", path: "/dashboard/assignments-solver" },
+  { label: "Settings", icon: "settings", path: "/dashboard/settings" },
+];
+
+export const authenticatedSidebarItems = [
+  { label: "Dashboard", icon: "home", path: "/dashboard" },
   { label: "Settings", icon: "settings", path: "/dashboard/settings" },
 ];
 

@@ -5,13 +5,14 @@ function buildSegments(segments) {
   const radius = 68;
   const circumference = 2 * Math.PI * radius;
   let offset = 0;
+  const safeTotal = total || 1;
 
   return {
     total,
     radius,
     circumference,
     segments: segments.map((segment) => {
-      const stroke = (segment.value / total) * circumference;
+      const stroke = (segment.value / safeTotal) * circumference;
       const current = {
         ...segment,
         stroke,
@@ -28,6 +29,8 @@ export default function DashboardDonutCard({
   subtitle,
   segments,
   centerLabel = "Flagged",
+  centerValue,
+  legendFormatter,
   className = "",
 }) {
   const chart = buildSegments(segments);
@@ -60,7 +63,7 @@ export default function DashboardDonutCard({
           </svg>
 
           <div className="dashboard-donut-center">
-            <strong>{chart.total}</strong>
+            <strong>{centerValue ?? chart.total}</strong>
             <span>{centerLabel}</span>
           </div>
         </div>
@@ -71,7 +74,7 @@ export default function DashboardDonutCard({
               <span className="dashboard-donut-legend-color" style={{ backgroundColor: segment.color }} />
               <div>
                 <strong>{segment.label}</strong>
-                <small>{segment.value}%</small>
+                <small>{legendFormatter ? legendFormatter(segment) : `${segment.value}%`}</small>
               </div>
             </div>
           ))}

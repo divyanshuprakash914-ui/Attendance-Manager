@@ -23,6 +23,14 @@ export default function SettingsSectionIcon({ name }) {
           <path d="M9.6 12.3 11 13.8l3.4-4" />
         </svg>
       );
+    case "api":
+      return (
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M8 10.5a3.5 3.5 0 1 1 0-7h3.2" />
+          <path d="M16 13.5a3.5 3.5 0 1 1 0 7h-3.2" />
+          <path d="M9.5 14.5 14.5 9.5" />
+        </svg>
+      );
     case "profile":
     default:
       return (

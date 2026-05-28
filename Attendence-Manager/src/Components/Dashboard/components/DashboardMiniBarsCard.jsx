@@ -16,7 +16,9 @@ export default function DashboardMiniBarsCard({
   insights = [],
   className = "",
 }) {
-  const max = Math.max(...values);
+  const safeValues = values.length ? values : [0];
+  const safeLabels = labels.length ? labels : ["No data"];
+  const max = Math.max(...safeValues, 1);
 
   return (
     <article className={["dashboard-mini-bars-card", className].filter(Boolean).join(" ")}>
@@ -33,8 +35,8 @@ export default function DashboardMiniBarsCard({
         </div>
 
         <div className="dashboard-mini-bars-columns">
-          {values.map((value, index) => (
-            <div key={`${labels[index]}-${value}`} className="dashboard-mini-bar-group">
+          {safeValues.map((value, index) => (
+            <div key={`${safeLabels[index]}-${value}`} className="dashboard-mini-bar-group">
               <span className="dashboard-mini-bar-value">{formatValue(value)}</span>
               <div className="dashboard-mini-bar-rail">
                 <div
@@ -42,7 +44,7 @@ export default function DashboardMiniBarsCard({
                   style={{ height: `${Math.max((value / max) * 100, 10)}%` }}
                 />
               </div>
-              <small>{labels[index]}</small>
+              <small>{safeLabels[index]}</small>
             </div>
           ))}
         </div>

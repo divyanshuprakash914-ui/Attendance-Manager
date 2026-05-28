@@ -385,10 +385,9 @@ export const timetablePageData = {
   header: {
     icon: "calendar",
     eyebrow: "Timetable",
-    title: "Weekly plan for classes, labs, and free windows.",
-    description:
-      "Use the weekly board to see daily load, identify heavy lab days, and protect the slots that matter most for attendance recovery.",
-    chips: ["5-day view", "2 lighter windows", "3 labs this week"],
+    title: "Weekly timetable",
+    description: "See the current class rhythm, heavy days, and the cleaner windows you can still use this week.",
+    chips: ["5-day view", "3 labs"],
   },
   stats: [
     {
@@ -534,10 +533,9 @@ export const attendancePageData = {
   header: {
     icon: "attendance",
     eyebrow: "Attendance",
-    title: "Live attendance picture with trend, recovery, and risk.",
-    description:
-      "Keep the highest-signal view of attendance performance: weekly trend, stream splits, risky subjects, and the exact courses that need recovery.",
-    chips: ["Current 72.8%", "4 subjects at risk", "2 safe bunk zones"],
+    title: "Attendance overview",
+    description: "Track trend, risk, and recovery in one place without opening every subject separately.",
+    chips: ["72.8% current", "4 at risk"],
   },
   stats: [
     {
@@ -647,10 +645,9 @@ export const bunkPlannerPageData = {
   header: {
     icon: "trend",
     eyebrow: "Bunk Planner",
-    title: "Choose leave days with the least attendance damage.",
-    description:
-      "Compare impact by day, protect the high-cost sessions, and decide where a single leave creates the smallest drop in your overall score.",
-    chips: ["Friday is safest", "2 protected labs", "One-class scenario ready"],
+    title: "Leave impact",
+    description: "Compare day-level impact first, then use the safest window instead of guessing around your schedule.",
+    chips: ["Friday safest", "2 protected labs"],
   },
   stats: [
     {
@@ -755,10 +752,9 @@ export const reportsPageData = {
   header: {
     icon: "report",
     eyebrow: "Reports",
-    title: "Exports, summaries, and the delivery flow for attendance reporting.",
-    description:
-      "See what reports are generated most, how they are distributed, and which scheduled exports still need review before they go out.",
-    chips: ["18 exports this week", "4 scheduled sends", "2 pending approval"],
+    title: "Reports and exports",
+    description: "Review what gets generated, where it goes, and which report deliveries still need a final check.",
+    chips: ["18 exports", "2 pending review"],
   },
   stats: [
     {
@@ -868,10 +864,9 @@ export const alertsPageData = {
   header: {
     icon: "bell",
     eyebrow: "Alerts",
-    title: "Signals, severity, and response queues for attendance issues.",
-    description:
-      "Keep an eye on what turned critical, what can wait, and which alerts already have a faculty or mentor owner attached to them.",
-    chips: ["9 active alerts", "3 critical", "5 resolved today"],
+    title: "Alert center",
+    description: "Keep the active signals visible, understand severity fast, and see who already owns the next response.",
+    chips: ["9 active", "3 critical"],
   },
   stats: [
     {
@@ -990,10 +985,9 @@ export const leaveTrackerPageData = {
   header: {
     icon: "leave",
     eyebrow: "Leave Tracker",
-    title: "Requests, approvals, and attendance impact from planned leave.",
-    description:
-      "Review leave requests, understand which ones are safe, and spot upcoming conflicts before they affect the weekly attendance close.",
-    chips: ["4 pending requests", "2 approved this week", "Friday safest"],
+    title: "Leave tracker",
+    description: "Keep requests, approvals, and attendance impact in one calmer view before anything gets scheduled.",
+    chips: ["4 pending", "2 approved"],
   },
   stats: [
     {
@@ -1107,10 +1101,9 @@ export const assignmentsSolverPageData = {
   header: {
     icon: "spark",
     eyebrow: "Assignments Solver",
-    title: "Workload, due dates, and AI-ready assignment triage.",
-    description:
-      "See what is due soon, how work is split by subject, and which assignments should be solved first before they collide with heavy attendance days.",
-    chips: ["18 total tasks", "6 due this week", "2 urgent labs"],
+    title: "Assignments",
+    description: "Review the current workload, what is due first, and which tasks deserve attention before heavy class days.",
+    chips: ["18 tasks", "6 due this week"],
   },
   stats: [
     {

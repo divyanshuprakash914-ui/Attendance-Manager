@@ -23,18 +23,24 @@ export const settingsSections = [
     description: "Security, sessions and access",
     icon: "account",
   },
+  {
+    id: "api",
+    label: "API access",
+    description: "Bearer token and client secret",
+    icon: "api",
+  },
 ];
 
 export const profileRecord = {
   name: "Divyanshu Prakash",
   email: "divyanshuprakash914@gmail.com",
-  phone: "+91 98765 43210",
-  institution: "AttendEase University",
+  phone: "",
+  institution: "",
   role: "Admin coordinator",
-  department: "Campus operations",
-  location: "Jaipur, India",
-  timezone: "Asia/Kolkata",
-  bio: "Building a cleaner attendance system for students, mentors, and campus operations teams.",
+  department: "",
+  location: "",
+  timezone: "",
+  bio: "",
 };
 
 export const skillsRecord = {
@@ -94,4 +100,9 @@ export const accountRecord = {
     { device: "iPhone 15 · Safari", location: "Jaipur, India", current: false },
     { device: "Office PC · Edge", location: "Delhi, India", current: false },
   ],
+};
+
+export const apiAccessRecord = {
+  bearerToken: "ae_live_sk_8d2b4f6a12exampletoken91x7",
+  clientSecret: "client_secret_9e7c1d4example8b3f",
 };

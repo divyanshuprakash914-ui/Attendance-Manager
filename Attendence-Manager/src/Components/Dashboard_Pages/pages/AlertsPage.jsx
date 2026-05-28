@@ -1,16 +1,24 @@
 import DashboardDonutCard from "../../Dashboard/components/DashboardDonutCard";
 import DashboardMiniBarsCard from "../../Dashboard/components/DashboardMiniBarsCard";
 import DashboardOverviewStatCard from "../../Dashboard/components/DashboardOverviewStatCard";
-import { alertsPageData as data } from "../DashboardPagesData";
 import DashboardListPanel from "../components/DashboardListPanel";
 import DashboardPageHeader from "../components/DashboardPageHeader";
 import DashboardTablePanel from "../components/DashboardTablePanel";
 import DashboardWorkspaceLayout from "../components/DashboardWorkspaceLayout";
+import useDashboardPageData from "../useDashboardPageData";
 
-export default function AlertsPage() {
+function AlertsPageContent() {
+  const { alertsPage: data } = useDashboardPageData();
+
   return (
-    <DashboardWorkspaceLayout activeItem="Alerts">
-      <DashboardPageHeader {...data.header} />
+    <>
+      <DashboardPageHeader
+        icon="bell"
+        eyebrow="Alerts"
+        title="Alert center"
+        description="See the live risk subjects, today’s protected sessions, and the current response queue."
+        chips={[`${data.stats[0]?.value || 0} active`, `${data.stats[1]?.value || 0} critical`]}
+      />
 
       <section className="dashboard-page-stats-grid">
         {data.stats.map((item) => (
@@ -29,6 +37,14 @@ export default function AlertsPage() {
       </section>
 
       <DashboardListPanel {...data.escalationPath} actionLabel="Go to leave tracker" actionPath="/dashboard/leave-tracker" />
+    </>
+  );
+}
+
+export default function AlertsPage() {
+  return (
+    <DashboardWorkspaceLayout activeItem="Alerts">
+      <AlertsPageContent />
     </DashboardWorkspaceLayout>
   );
 }
