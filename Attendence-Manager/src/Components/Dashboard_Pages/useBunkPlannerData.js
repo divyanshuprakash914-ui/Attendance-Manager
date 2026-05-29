@@ -1,5 +1,6 @@
 import { useMemo } from "react";
 
+import { useBunkPlannerStore } from "./bunkPlannerStore";
 import useDashboardWorkspace from "./useDashboardWorkspace";
 
 function toNumber(value, fallback = 0) {
@@ -32,8 +33,16 @@ function formatTitleCase(value) {
     .join(" ");
 }
 
-function pluralize(value, word) {
-  return `${value} ${word}${value === 1 ? "" : "s"}`;
+function pluralize(value, singular, plural = `${singular}s`) {
+  return `${value} ${value === 1 ? singular : plural}`;
+}
+
+function buildSignature(mode, selectedClassIds, selectedDayId) {
+  if (mode === "day") {
+    return `day:${selectedDayId || "none"}`;
+  }
+
+  return `${mode}:${selectedClassIds.slice().sort().join("|")}`;
 }
 
 function projectAfterSkip(attended, total, skippedCount) {
@@ -190,10 +199,10 @@ function buildScenarioState({ mode, selectedClassIds, selectedDayId, data }) {
       currentOverall: data.overall.percentageLabel,
       afterOverall: formatPercentage(afterOverall),
       threshold: `${threshold}%`,
-      selectedCountLabel: pluralize(selectedDay.classes, "class"),
-      recoveryLabel: pluralize(overallRecovery, "class"),
+      selectedCountLabel: pluralize(selectedDay.classes, "class", "classes"),
+      recoveryLabel: pluralize(overallRecovery, "class", "classes"),
       recoveryMessage: overallRecovery
-        ? `You need to attend the next ${pluralize(overallRecovery, "class")} after this leave day to recover safely.`
+        ? `You need to attend the next ${pluralize(overallRecovery, "class", "classes")} after this leave day to recover safely.`
         : "No forced recovery block is needed if the rest of the week stays fully attended.",
       affectedSubjects: [],
       daySummary: `${selectedDay.day} · ${pluralize(selectedDay.classes, "lecture")} · ${selectedDay.riskLabel}`,
@@ -277,10 +286,10 @@ function buildScenarioState({ mode, selectedClassIds, selectedDayId, data }) {
         : `${worstSubject?.name || "This selection"} falls below the live threshold after the skip.`;
   const details =
     tone === "green"
-      ? `If you skip ${pluralize(skippedCount, "class")}, your overall attendance becomes ${formatPercentage(overallAfter)}.`
+      ? `If you skip ${pluralize(skippedCount, "class", "classes")}, your overall attendance becomes ${formatPercentage(overallAfter)}.`
       : tone === "amber"
-        ? `If you skip ${pluralize(skippedCount, "class")}, your overall attendance becomes ${formatPercentage(overallAfter)} and recovery should start immediately.`
-        : `If you skip ${pluralize(skippedCount, "class")}, your overall attendance becomes ${formatPercentage(overallAfter)} and ${worstSubject?.name || "one subject"} turns unsafe.`;
+        ? `If you skip ${pluralize(skippedCount, "class", "classes")}, your overall attendance becomes ${formatPercentage(overallAfter)} and recovery should start immediately.`
+        : `If you skip ${pluralize(skippedCount, "class", "classes")}, your overall attendance becomes ${formatPercentage(overallAfter)} and ${worstSubject?.name || "one subject"} turns unsafe.`;
 
   return {
     isEmpty: false,
@@ -291,10 +300,10 @@ function buildScenarioState({ mode, selectedClassIds, selectedDayId, data }) {
     currentOverall: data.overall.percentageLabel,
     afterOverall: formatPercentage(overallAfter),
     threshold: `${threshold}%`,
-    selectedCountLabel: pluralize(skippedCount, "class"),
-    recoveryLabel: pluralize(overallRecovery, "class"),
+    selectedCountLabel: pluralize(skippedCount, "class", "classes"),
+    recoveryLabel: pluralize(overallRecovery, "class", "classes"),
     recoveryMessage: overallRecovery
-      ? `You need to attend the next ${pluralize(overallRecovery, "class")} overall to rebuild your safety margin.`
+      ? `You need to attend the next ${pluralize(overallRecovery, "class", "classes")} overall to rebuild your safety margin.`
       : "No forced recovery block is needed as long as upcoming classes remain attended.",
     affectedSubjects,
     daySummary: `${formatTitleCase(data.todayLabel)} · ${pluralize(skippedCount, "selected lecture")}`,
@@ -311,31 +320,101 @@ export function getDefaultDayId(data) {
   return preferred?.id || "";
 }
 
+export function createBunkPlanRecord({ mode, selectedClassIds, selectedDayId, scenario, data }) {
+  const selectedClasses = data.classOptions.filter((item) => selectedClassIds.includes(item.id));
+  const selectedDay = data.dayOptions.find((item) => item.id === selectedDayId) || null;
+  const classCount = mode === "day" ? selectedDay?.classes || 0 : selectedClasses.length;
+  const modeLabel =
+    mode === "day" ? "Full-day bunk" : mode === "multi" ? "Multi-class bunk" : "Single-class bunk";
+  const selectionLabel =
+    mode === "day"
+      ? selectedDay?.day || "Selected day"
+      : selectedClasses.map((item) => `${item.subject} · ${item.time}`).join(" • ");
+
+  return {
+    id: `${buildSignature(mode, selectedClassIds, selectedDayId)}:${Date.now()}`,
+    signature: buildSignature(mode, selectedClassIds, selectedDayId),
+    mode,
+    modeLabel,
+    label:
+      mode === "day"
+        ? `${selectedDay?.day || "Day"} leave`
+        : `${classCount} ${classCount === 1 ? "class" : "classes"} selected`,
+    selectionLabel,
+    dayLabel: mode === "day" ? selectedDay?.day || data.todayLabel : data.todayLabel,
+    selectedCount: classCount,
+    selectedCountLabel: scenario.selectedCountLabel,
+    afterOverall: scenario.afterOverall,
+    currentOverall: scenario.currentOverall,
+    threshold: scenario.threshold,
+    tone: scenario.tone,
+    toneLabel: scenario.label,
+    summary: scenario.summary,
+    details: scenario.details,
+    recoveryLabel: scenario.recoveryLabel,
+    createdAt: new Date().toISOString(),
+    classIds: selectedClasses.map((item) => item.id),
+    classes: selectedClasses.map((item) => ({
+      id: item.id,
+      subjectKey: item.subjectKey,
+      subject: item.subject,
+      time: item.time,
+      family: item.family,
+      tone: item.tone,
+    })),
+    subjectEffects: scenario.affectedSubjects.map((subject) => ({
+      id: subject.id,
+      name: subject.name,
+      skippedCount: subject.skippedCount || 0,
+      tone: subject.tone,
+      toneLabel: subject.toneLabel,
+      currentPercentageLabel: subject.currentPercentageLabel,
+      afterPercentageLabel: subject.afterPercentageLabel,
+      recoveryNeeded: subject.recoveryNeeded,
+      remainingBunks: subject.remainingBunks,
+    })),
+  };
+}
+
 export { buildScenarioState };
 
 export default function useBunkPlannerData() {
   const { dashboardData } = useDashboardWorkspace();
+  const { confirmed, buffers } = useBunkPlannerStore();
 
   return useMemo(() => {
     const kpis = dashboardData?.kpis || {};
     const threshold = toNumber(kpis.threshold, 75);
     const overallAttended = Number(kpis.attended) || 0;
     const overallTotal = Number(kpis.total) || 0;
-    const overallPercentage = toNumber(kpis.overall_percentage, 0);
     const todayPayload = dashboardData?.today_classes || {};
     const todayLabel = formatTitleCase(todayPayload.day || "Today");
     const subjectsRaw = dashboardData?.subjects || [];
     const todayRaw = todayPayload.classes || [];
     const bunkRaw = dashboardData?.bunk_planner?.days || [];
 
+    const confirmedSubjectSkips = confirmed.reduce((map, plan) => {
+      (plan.subjectEffects || []).forEach((subject) => {
+        map.set(subject.id, (map.get(subject.id) || 0) + (Number(subject.skippedCount) || 0));
+      });
+      return map;
+    }, new Map());
+
+    const confirmedClassIds = new Set(confirmed.flatMap((plan) => plan.classIds || []));
+    const confirmedOverallSkips = confirmed.reduce((sum, plan) => sum + (Number(plan.selectedCount) || 0), 0);
+    const effectiveOverallTotal = overallTotal + confirmedOverallSkips;
+    const overallPercentage = projectAfterSkip(overallAttended, overallTotal, confirmedOverallSkips);
+
     const subjectCards = subjectsRaw
       .map((subject, index) => {
         const attended = Number(subject.attended) || 0;
         const total = Number(subject.total) || 0;
-        const percentage = toNumber(subject.percentage, 0);
-        const maxBunks = typeof subject.bunks_allowed === "number" ? subject.bunks_allowed : computeMaxSafeBunks(attended, total, threshold);
-        const afterNextSkip = projectAfterSkip(attended, total, 1);
-        const recoveryNeeded = computeRecoveryClasses(attended, total, threshold);
+        const confirmedSkips = confirmedSubjectSkips.get(subject.key || subject.name) || 0;
+        const effectiveTotal = total + confirmedSkips;
+        const percentage = projectAfterSkip(attended, total, confirmedSkips);
+        const maxBunks = computeMaxSafeBunks(attended, effectiveTotal, threshold);
+        const afterNextSkip = projectAfterSkip(attended, effectiveTotal, 1);
+        const recoveryNeeded = computeRecoveryClasses(attended, effectiveTotal, threshold);
         const tone = getTone(percentage, threshold, maxBunks);
 
         return {
@@ -344,7 +423,8 @@ export default function useBunkPlannerData() {
           name: subject.name,
           family: inferSubjectFamily(subject.name),
           attended,
-          total,
+          total: effectiveTotal,
+          baseTotal: total,
           percentage,
           percentageLabel: formatPercentage(percentage),
           threshold,
@@ -352,10 +432,13 @@ export default function useBunkPlannerData() {
           afterNextSkip,
           afterNextSkipLabel: formatPercentage(afterNextSkip),
           recoveryNeeded,
+          confirmedSkips,
           tone,
           toneLabel: getToneLabel(tone),
           note:
-            tone === "green"
+            confirmedSkips > 0
+              ? `${pluralize(confirmedSkips, "planned bunk")} already locked for this subject.`
+              : tone === "green"
               ? "Reserve this only after risky subjects are protected."
               : tone === "amber"
                 ? "Close to the line. Use carefully."
@@ -388,13 +471,14 @@ export default function useBunkPlannerData() {
         subjectMaxBunks: subject?.maxBunks || 0,
         subjectTone: subject?.tone || tone,
         tone: item.action === "must_attend" ? "red" : tone,
+        isConfirmed: confirmedClassIds.has(`${item.key || item.subject}-${item.time}-${index}`),
       };
     });
 
     const dayOptions = bunkRaw
       .map((day, index) => {
         const classes = Number(day.classes) || 0;
-        const afterOverall = toNumber(day.if_absent_percentage, projectAfterSkip(overallAttended, overallTotal, classes));
+        const afterOverall = projectAfterSkip(overallAttended, effectiveOverallTotal, classes);
         const tone = mapDayTone(day.risk, afterOverall, threshold);
 
         return {
@@ -437,7 +521,9 @@ export default function useBunkPlannerData() {
         name: subject.name,
         tone: subject.tone,
         percentageLabel: subject.percentageLabel,
-        recoveryLabel: subject.recoveryNeeded ? `Attend next ${pluralize(subject.recoveryNeeded, "class")}` : `Can bunk ${pluralize(subject.maxBunks, "class")}`,
+        recoveryLabel: subject.recoveryNeeded
+          ? `Attend next ${pluralize(subject.recoveryNeeded, "class", "classes")}`
+          : `Can bunk ${pluralize(subject.maxBunks, "class", "classes")}`,
         note: subject.note,
       }));
 
@@ -451,7 +537,7 @@ export default function useBunkPlannerData() {
         icon: "attendance-card",
         title: "Overall attendance",
         value: formatPercentage(overallPercentage),
-        subtitle: `${overallAttended} / ${overallTotal} lectures tracked`,
+        subtitle: `${overallAttended} / ${effectiveOverallTotal} lectures tracked`,
         accent: "purple",
         progress: overallPercentage,
       },
@@ -483,10 +569,10 @@ export default function useBunkPlannerData() {
       todayLabel,
       overall: {
         attended: overallAttended,
-        total: overallTotal,
+        total: effectiveOverallTotal,
         percentage: overallPercentage,
         percentageLabel: formatPercentage(overallPercentage),
-        recoveryNeeded: computeRecoveryClasses(overallAttended, overallTotal, threshold),
+        recoveryNeeded: computeRecoveryClasses(overallAttended, effectiveOverallTotal, threshold),
       },
       summaryStats,
       classOptions,
@@ -498,6 +584,8 @@ export default function useBunkPlannerData() {
       riskySubjects,
       totalSafeBunks,
       bestDay,
+      confirmedPlans: confirmed,
+      bufferPlans: buffers,
     };
-  }, [dashboardData]);
+  }, [buffers, confirmed, dashboardData]);
 }

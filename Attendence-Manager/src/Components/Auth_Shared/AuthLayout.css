@@ -48,12 +48,15 @@
   position: absolute;
   top: 54px;
   left: 58px;
-  color: #111228;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: 2.05rem;
-  font-style: italic;
-  font-weight: 700;
-  letter-spacing: -0.06em;
+  display: inline-flex;
+  align-items: center;
+  width: clamp(170px, 17vw, 240px);
+}
+
+.login-wordmark-image {
+  width: 100%;
+  height: auto;
+  display: block;
 }
 
 .login-ball-mark {
@@ -918,7 +921,7 @@
   .login-wordmark {
     top: 28px;
     left: 24px;
-    font-size: 1.95rem;
+    width: 180px;
   }
 
   .login-back-link {
@@ -980,7 +983,7 @@
   .login-wordmark {
     top: 22px;
     left: 18px;
-    font-size: 1.75rem;
+    width: 156px;
   }
 
   .login-back-link {

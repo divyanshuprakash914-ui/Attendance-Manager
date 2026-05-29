@@ -1,6 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
 
+import BrandLogo from "../Common/BrandLogo";
 import "./Navbar.css";
 
 const navItems = [
@@ -24,7 +25,7 @@ export default function Navbar_Before_Login() {
       <nav className="navbar" aria-label="Primary navigation">
         <a className="brand" href={homeHref} onClick={closeMenu}>
           <span className="brand-mark" aria-hidden="true">
-            A
+            <BrandLogo variant="emblem" decorative className="brand-mark-image" />
           </span>
           <span className="brand-copy">
             <strong>AttendEase</strong>

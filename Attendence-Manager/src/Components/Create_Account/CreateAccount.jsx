@@ -12,9 +12,6 @@ export default function CreateAccount() {
     <div className="login-page create-account-page">
       <main className="login-shell login-shell-solo">
         <section className="login-content-panel">
-          <Link to="/" className="login-wordmark">
-            AttendEase
-          </Link>
 
           <Link to="/" className="login-back-link">
             Back

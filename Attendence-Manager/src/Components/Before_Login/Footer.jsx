@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 
+import BrandLogo from "../Common/BrandLogo";
 import "./Footer.css";
 
 const footerLinks = [
@@ -40,7 +41,9 @@ export default function Footer() {
       <div className="site-footer-inner">
         <div className="footer-top-row">
           <a href="#home" className="footer-brand-block">
-            <span className="footer-brand-mark">A</span>
+            <span className="footer-brand-mark">
+              <BrandLogo variant="emblem" decorative className="footer-brand-mark-image" />
+            </span>
             <div className="footer-brand-copy">
               <strong>AttendEase</strong>
               <p>Attendance, designed with clarity for faculty, mentors, and campus teams.</p>

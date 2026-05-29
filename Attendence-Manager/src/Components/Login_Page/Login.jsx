@@ -36,9 +36,6 @@ export default function Login() {
     <div className="login-page">
       <main className="login-shell login-shell-solo">
         <section className="login-content-panel">
-          <Link to="/" className="login-wordmark">
-            AttendEase
-          </Link>
 
           <Link to="/" className="login-back-link">
             Back

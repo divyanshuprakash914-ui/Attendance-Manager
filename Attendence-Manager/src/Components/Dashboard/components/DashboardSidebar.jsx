@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 
 import { getAvatarInitials } from "../../Settings_Page/profileStorage";
+import BrandLogo from "../../Common/BrandLogo";
 import DashboardIcon from "./DashboardIcon";
 import "./DashboardSidebar.css";
 
@@ -17,7 +18,7 @@ export default function DashboardSidebar({
       <div className="dashboard-sidebar-brand">
         <Link to="/" className="dashboard-sidebar-brand-link">
           <span className="dashboard-sidebar-brand-mark">
-            <DashboardIcon name="book-open" />
+            <BrandLogo variant="emblem" decorative className="dashboard-sidebar-brand-mark-image" />
           </span>
           <div>
             <strong>AttendEase</strong>

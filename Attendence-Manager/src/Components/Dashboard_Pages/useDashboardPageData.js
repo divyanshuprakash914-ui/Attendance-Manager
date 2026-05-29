@@ -1,5 +1,6 @@
 import { useMemo } from "react";
 
+import { useBunkPlannerStore } from "./bunkPlannerStore";
 import useDashboardWorkspace from "./useDashboardWorkspace";
 
 const SUBJECT_COLORS = {
@@ -219,6 +220,7 @@ function sortSubjectsByRisk(subjects) {
 
 export default function useDashboardPageData() {
   const { dashboardData } = useDashboardWorkspace();
+  const { confirmed } = useBunkPlannerStore();
 
   return useMemo(() => {
     const kpis = dashboardData?.kpis || {};
@@ -867,6 +869,28 @@ export default function useDashboardPageData() {
       ],
     };
 
+    const leaveCalendar = {
+      title: "Leave calendar",
+      subtitle: confirmed.length
+        ? "Confirmed bunks saved from the planner"
+        : "Confirmed bunks from the planner will appear here once they are saved.",
+      entries: confirmed
+        .slice()
+        .sort((left, right) => new Date(right.createdAt).getTime() - new Date(left.createdAt).getTime())
+        .map((plan) => ({
+          id: plan.id,
+          day: plan.dayLabel,
+          modeLabel: plan.modeLabel,
+          countLabel: plan.selectedCountLabel,
+          afterOverall: plan.afterOverall,
+          tone: plan.tone,
+          detail:
+            plan.mode === "day"
+              ? `${plan.selectedCountLabel} locked as a full-day leave`
+              : plan.selectionLabel || plan.summary,
+        })),
+    };
+
     const leaveRequestTable = {
       title: "Live request matrix",
       subtitle: "Best current leave windows from the overview payload",
@@ -1367,6 +1391,7 @@ export default function useDashboardPageData() {
       },
       leaveTrackerPage: {
         stats: leaveStats,
+        leaveCalendar,
         scenario: liveLeaveScenario,
         safetyMix: leaveSafetyMix,
         leaveFlow,
@@ -1404,5 +1429,5 @@ export default function useDashboardPageData() {
         priorityQueue: assignmentQueue,
       },
     };
-  }, [dashboardData]);
+  }, [confirmed, dashboardData]);
 }

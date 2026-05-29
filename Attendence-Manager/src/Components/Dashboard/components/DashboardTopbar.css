@@ -25,6 +25,14 @@
   transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
 }
 
+.dashboard-workspace-logo {
+  width: 28px;
+  height: 28px;
+  object-fit: cover;
+  border-radius: 9px;
+  flex-shrink: 0;
+}
+
 .dashboard-workspace-pill:hover {
   transform: translateY(-1px);
   border-color: rgba(22, 26, 40, 0.12);

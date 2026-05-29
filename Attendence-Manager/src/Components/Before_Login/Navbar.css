@@ -33,15 +33,20 @@
 .brand-mark {
   display: grid;
   place-items: center;
-  width: 40px;
-  height: 40px;
+  width: 48px;
+  height: 48px;
+  padding: 3px;
   border-radius: 14px;
-  background: #1d2842;
-  color: #ffffff;
-  font-size: 0.94rem;
-  font-weight: 800;
-  letter-spacing: -0.04em;
+  background: #fffdf8;
+  border: 1px solid rgba(29, 40, 66, 0.08);
   box-shadow: 0 14px 32px rgba(29, 40, 66, 0.16);
+}
+
+.brand-mark-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 11px;
 }
 
 .brand-copy {

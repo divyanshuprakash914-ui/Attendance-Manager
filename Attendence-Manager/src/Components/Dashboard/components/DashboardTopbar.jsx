@@ -1,3 +1,4 @@
+import BrandLogo from "../../Common/BrandLogo";
 import { getAvatarInitials } from "../../Settings_Page/profileStorage";
 import "./DashboardTopbar.css";
 
@@ -5,6 +6,7 @@ export default function DashboardTopbar({ profileName = "User" }) {
   return (
     <header className="dashboard-topbar">
       <button type="button" className="dashboard-workspace-pill">
+        <BrandLogo variant="emblem" decorative className="dashboard-workspace-logo" />
         <span>AttendEase Campus</span>
         <span className="dashboard-workspace-caret" aria-hidden="true">
           ▾

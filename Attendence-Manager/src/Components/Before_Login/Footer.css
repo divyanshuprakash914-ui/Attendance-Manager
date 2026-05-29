@@ -51,21 +51,26 @@
 .footer-brand-mark {
   display: grid;
   place-items: center;
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
+  padding: 4px;
   border-radius: 14px;
-  background: #1d2842;
-  color: #ffffff;
-  font-size: 0.94rem;
-  font-weight: 800;
-  letter-spacing: -0.04em;
+  background: #fffdf8;
+  border: 1px solid rgba(29, 40, 66, 0.08);
   transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.footer-brand-mark-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
 }
 
 .footer-brand-block:hover .footer-brand-mark,
 .footer-brand-block:focus-visible .footer-brand-mark {
   transform: translateY(-1px) scale(1.03);
-  background: #253252;
+  background: #fffdf8;
   box-shadow: 0 14px 28px rgba(29, 40, 66, 0.18);
 }
 

@@ -266,6 +266,105 @@
   font-size: 0.76rem;
 }
 
+.leave-tracker-calendar-panel {
+  gap: 16px;
+}
+
+.leave-tracker-calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.leave-tracker-calendar-card {
+  display: grid;
+  gap: 12px;
+  padding: 16px;
+  border: 1px solid #edf1f6;
+  border-radius: 18px;
+  background: #fbfcff;
+}
+
+.leave-tracker-calendar-card-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.leave-tracker-calendar-card-head > div,
+.leave-tracker-calendar-metric {
+  display: grid;
+  gap: 5px;
+}
+
+.leave-tracker-calendar-card-head span,
+.leave-tracker-calendar-card p,
+.leave-tracker-calendar-metric span {
+  color: #7a86a7;
+}
+
+.leave-tracker-calendar-card-head strong,
+.leave-tracker-calendar-metric strong {
+  color: #1b2040;
+}
+
+.leave-tracker-calendar-card p {
+  margin: 0;
+  font-size: 0.84rem;
+  line-height: 1.55;
+}
+
+.leave-tracker-calendar-footer {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.leave-tracker-calendar-empty {
+  display: grid;
+  place-items: center;
+  min-height: 160px;
+  padding: 20px;
+  border: 1px dashed #dbe3f0;
+  border-radius: 18px;
+  background: #fafbfe;
+  color: #7a86a7;
+  font-size: 0.86rem;
+  text-align: center;
+}
+
+.leave-tracker-calendar-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 30px;
+  padding: 0 12px;
+  border-radius: 999px;
+  font-size: 0.74rem;
+  font-weight: 700;
+}
+
+.leave-tracker-calendar-badge.tone-green {
+  background: #ebf8ef;
+  color: #23905a;
+}
+
+.leave-tracker-calendar-badge.tone-amber {
+  background: #fff5e8;
+  color: #c47a07;
+}
+
+.leave-tracker-calendar-badge.tone-red {
+  background: #fff0f2;
+  color: #d74f64;
+}
+
+@media (max-width: 980px) {
+  .leave-tracker-calendar-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 .dashboard-list-panel-value {
   display: inline-flex;
   align-items: center;

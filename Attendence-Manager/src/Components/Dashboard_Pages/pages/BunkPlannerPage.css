@@ -11,17 +11,26 @@
 
 .bunk-planner-workspace-grid {
   grid-template-columns: minmax(0, 1.28fr) minmax(360px, 0.82fr);
-  align-items: start;
+  align-items: stretch;
 }
 
 .bunk-planner-main-column {
   grid-template-rows: auto minmax(0, 1fr);
   align-content: start;
+  align-self: stretch;
   min-height: 0;
+}
+
+.bunk-planner-main-feature-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.18fr) minmax(320px, 0.82fr);
+  gap: 16px;
+  align-items: stretch;
 }
 
 .bunk-planner-side-column {
   min-width: 0;
+  align-self: stretch;
 }
 
 .bunk-planner-side-rail {
@@ -29,6 +38,74 @@
   top: 28px;
   display: grid;
   gap: 16px;
+}
+
+.bunk-planner-media-panel {
+  align-content: start;
+  gap: 16px;
+  min-height: 100%;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at top right, rgba(124, 77, 255, 0.07), transparent 36%),
+    linear-gradient(180deg, #ffffff 0%, #fbfcff 100%);
+}
+
+.bunk-planner-media-frame {
+  position: relative;
+  min-height: 320px;
+  border: 1px solid #edf1f6;
+  border-radius: 24px;
+  overflow: hidden;
+  background: #f5f7fc;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.72);
+}
+
+.bunk-planner-media-frame::after {
+  content: "";
+  position: absolute;
+  inset: auto 14px 14px auto;
+  width: 74px;
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.68);
+  box-shadow: 0 0 0 1px rgba(27, 32, 64, 0.04);
+  pointer-events: none;
+}
+
+.bunk-planner-media-video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 320px;
+  object-fit: cover;
+}
+
+.bunk-planner-media-notes {
+  display: grid;
+  gap: 10px;
+}
+
+.bunk-planner-media-note {
+  display: grid;
+  gap: 4px;
+  padding: 14px;
+  border: 1px solid #edf1f6;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.82);
+}
+
+.bunk-planner-media-note span {
+  color: #7a86a7;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.bunk-planner-media-note strong {
+  color: #1b2040;
+  font-size: 0.92rem;
+  line-height: 1.45;
 }
 
 .bunk-planner-panel-head {
@@ -475,6 +552,161 @@
   color: #1b2040;
 }
 
+.bunk-planner-selection-panel {
+  gap: 16px;
+}
+
+.bunk-planner-selection-totals {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.bunk-planner-selection-total {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 30px;
+  padding: 0 10px;
+  border: 1px solid #e8ecf4;
+  border-radius: 999px;
+  background: #f8f9fd;
+  color: #55607e;
+  font-size: 0.74rem;
+  font-weight: 700;
+}
+
+.bunk-planner-selection-total.is-muted {
+  background: #ffffff;
+  color: #7a86a7;
+}
+
+.bunk-planner-selection-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 12px;
+}
+
+.bunk-planner-selection-summary,
+.bunk-planner-selection-final {
+  display: grid;
+  gap: 6px;
+  padding: 16px;
+  border: 1px solid #edf1f6;
+  border-radius: 18px;
+  background: #fbfcff;
+}
+
+.bunk-planner-selection-summary span,
+.bunk-planner-selection-summary small,
+.bunk-planner-selection-final span,
+.bunk-planner-selection-final small {
+  color: #7a86a7;
+}
+
+.bunk-planner-selection-summary strong,
+.bunk-planner-selection-final strong {
+  color: #1b2040;
+  font-size: 1.15rem;
+  line-height: 1.1;
+}
+
+.bunk-planner-selection-final {
+  min-width: 148px;
+}
+
+.bunk-planner-selection-final.tone-green {
+  background: #f3fbf6;
+  border-color: #dff2e7;
+}
+
+.bunk-planner-selection-final.tone-amber {
+  background: #fff9ef;
+  border-color: #f6e9d5;
+}
+
+.bunk-planner-selection-final.tone-red {
+  background: #fff4f6;
+  border-color: #f5dde4;
+}
+
+.bunk-planner-selection-class-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.bunk-planner-selection-class {
+  display: grid;
+  gap: 4px;
+  padding: 12px 14px;
+  border: 1px solid #edf1f6;
+  border-radius: 16px;
+  background: #fbfcff;
+}
+
+.bunk-planner-selection-class strong {
+  color: #1b2040;
+  font-size: 0.84rem;
+}
+
+.bunk-planner-selection-class span {
+  color: #7a86a7;
+  font-size: 0.76rem;
+}
+
+.bunk-planner-selection-feedback {
+  padding: 12px 14px;
+  border-radius: 16px;
+  font-size: 0.84rem;
+  font-weight: 600;
+}
+
+.bunk-planner-selection-feedback.tone-green {
+  background: #eefaf2;
+  color: #23905a;
+}
+
+.bunk-planner-selection-feedback.tone-purple {
+  background: #f5f0ff;
+  color: #6c4fff;
+}
+
+.bunk-planner-selection-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.bunk-planner-selection-button {
+  min-height: 40px;
+  padding: 0 16px;
+  border: 1px solid #e6ebf4;
+  border-radius: 14px;
+  background: #ffffff;
+  color: #55607e;
+  font-size: 0.82rem;
+  font-weight: 700;
+  transition:
+    border-color 0.22s ease,
+    background-color 0.22s ease,
+    color 0.22s ease,
+    transform 0.22s ease;
+}
+
+.bunk-planner-selection-button:hover {
+  transform: translateY(-1px);
+  border-color: #d7def0;
+  color: #1b2040;
+}
+
+.bunk-planner-selection-button.is-primary {
+  border-color: rgba(124, 77, 255, 0.18);
+  background: #f4efff;
+  color: #6c4fff;
+}
+
 .bunk-planner-subject-grid {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   height: 100%;
@@ -620,6 +852,7 @@
 }
 
 .bunk-planner-subject-panel {
+  height: 100%;
   gap: 18px;
   grid-template-rows: auto minmax(0, 1fr);
   min-height: clamp(720px, calc(100vh - 220px), 1120px);
@@ -628,6 +861,10 @@
 
 @media (max-width: 1280px) {
   .bunk-planner-workspace-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .bunk-planner-main-feature-grid {
     grid-template-columns: 1fr;
   }
 
@@ -653,7 +890,8 @@
 
   .bunk-planner-impact-hero,
   .bunk-planner-best-day,
-  .bunk-planner-impact-subject {
+  .bunk-planner-impact-subject,
+  .bunk-planner-selection-hero {
     grid-template-columns: 1fr;
   }
 
@@ -674,6 +912,15 @@
     overflow: visible;
     padding-right: 0;
   }
+
+  .bunk-planner-selection-final {
+    min-width: 0;
+  }
+
+  .bunk-planner-media-frame,
+  .bunk-planner-media-video {
+    min-height: 240px;
+  }
 }
 
 @media (max-width: 720px) {
@@ -683,7 +930,8 @@
 
   .bunk-planner-inline-actions,
   .bunk-planner-inline-actions-row,
-  .bunk-planner-recovery-actions {
+  .bunk-planner-recovery-actions,
+  .bunk-planner-selection-actions {
     flex-direction: column;
     align-items: stretch;
   }
@@ -692,7 +940,8 @@
   .bunk-planner-impact-badge,
   .bunk-planner-subject-state,
   .dashboard-page-link,
-  .bunk-planner-inline-button {
+  .bunk-planner-inline-button,
+  .bunk-planner-selection-button {
     width: 100%;
     justify-content: center;
   }

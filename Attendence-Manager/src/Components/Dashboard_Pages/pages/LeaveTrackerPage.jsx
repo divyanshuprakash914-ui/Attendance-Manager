@@ -3,6 +3,7 @@ import DashboardLeaveScenarioCard from "../../Dashboard/components/DashboardLeav
 import DashboardMiniBarsCard from "../../Dashboard/components/DashboardMiniBarsCard";
 import DashboardOverviewStatCard from "../../Dashboard/components/DashboardOverviewStatCard";
 import DashboardListPanel from "../components/DashboardListPanel";
+import LeaveTrackerCalendarPanel from "../components/LeaveTrackerCalendarPanel";
 import DashboardPageHeader from "../components/DashboardPageHeader";
 import DashboardTablePanel from "../components/DashboardTablePanel";
 import DashboardWorkspaceLayout from "../components/DashboardWorkspaceLayout";
@@ -25,6 +26,10 @@ function LeaveTrackerPageContent() {
         {data.stats.map((item) => (
           <DashboardOverviewStatCard key={item.title} {...item} />
         ))}
+      </section>
+
+      <section>
+        <LeaveTrackerCalendarPanel {...data.leaveCalendar} />
       </section>
 
       <section className="dashboard-page-grid-two">
