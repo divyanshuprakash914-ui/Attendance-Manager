@@ -2,9 +2,10 @@ import { Link } from "react-router-dom";
 
 import "../Auth_Shared/AuthLayout.css";
 import "./CreateAccount.css";
+import { API_URL } from "../../lib/api";
 
 const handleGoogleSignup = () => {
-  window.location.href = "http://localhost:8000/auth/google/login";
+  window.location.href = `${API_URL}/auth/google/login`;
 };
 
 export default function CreateAccount() {

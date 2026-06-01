@@ -3,16 +3,17 @@ import { Link } from "react-router-dom";
 import "../Auth_Shared/AuthLayout.css";
 import "./Login.css";
 import EmailLogin from "./EmailLogin";
+import { API_URL } from "../../lib/api";
 
 const handleGoogleLogin = () => {
-  window.location.href = "http://localhost:8000/auth/google/login";
+  window.location.href = `${API_URL}/auth/google/login`;
 };
 
 export default function Login() {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    fetch("http://localhost:8000/auth/me", {
+    fetch(`${API_URL}/auth/me`, {
       credentials: "include",
     })
       .then((res) => {

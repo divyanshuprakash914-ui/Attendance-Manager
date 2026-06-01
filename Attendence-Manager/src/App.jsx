@@ -1,4 +1,5 @@
-import { Routes, Route} from "react-router-dom";
+import { useEffect } from "react";
+import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
 
 import BeforeLogin from "./Components/Before_Login/Before_Login";
 import Login from "./Components/Login_Page/Login";
@@ -14,16 +15,33 @@ import AlertsPage from "./Components/Dashboard_Pages/pages/AlertsPage";
 import LeaveTrackerPage from "./Components/Dashboard_Pages/pages/LeaveTrackerPage";
 import AssignmentsSolverPage from "./Components/Dashboard_Pages/pages/AssignmentsSolverPage";
 
+function RoutePathNormalizer() {
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const normalizedPath = location.pathname.replace(/\/{2,}/g, "/");
+
+    if (normalizedPath !== location.pathname) {
+      navigate(`${normalizedPath}${location.search}${location.hash}`, {
+        replace: true,
+      });
+    }
+  }, [location.hash, location.pathname, location.search, navigate]);
+
+  return null;
+}
 
 function App() {
 
   return (
     <>
+      <RoutePathNormalizer />
       <Routes>
         <Route path = "/" element={<BeforeLogin />} />
         <Route path = "/login" element={<Login />} />
         <Route path = "/create-account" element={<CreateAccount />} />
-        <Route path = "/dashboard" element={<Dashboard />} />
+        <Route path = "/dashboard/*" element={<Dashboard />} />
         <Route path = "/dashboard/subjects" element={<SubjectsPage />} />
         <Route path = "/dashboard/timetable" element={<TimetablePage />} />
         <Route path = "/dashboard/attendance" element={<AttendancePage />} />

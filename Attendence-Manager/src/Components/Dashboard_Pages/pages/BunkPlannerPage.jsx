@@ -1,6 +1,5 @@
 import { useMemo, useState } from "react";
 
-import bunkPlannerPreviewVideo from "../../../assets/bfeac01c-116d-11ee-b589-efdc95805700.mp4";
 import DashboardOverviewStatCard from "../../Dashboard/components/DashboardOverviewStatCard";
 import BunkPlannerImpactPanel from "../components/BunkPlannerImpactPanel";
 import BunkPlannerRecoveryPanel from "../components/BunkPlannerRecoveryPanel";
@@ -158,7 +157,7 @@ function BunkPlannerPageContent() {
 
       <section className="bunk-planner-workspace-grid">
         <div className="bunk-planner-main-column">
-          <div className="bunk-planner-main-feature-grid">
+          <div className="bunk-planner-main-stage">
             <BunkPlannerScenarioPanel
               mode={mode}
               onModeChange={handleModeChange}
@@ -174,39 +173,6 @@ function BunkPlannerPageContent() {
               onSelectAllSafe={handleSelectAllSafe}
               onResetSelection={handleResetSelection}
             />
-
-            <article className="dashboard-page-panel bunk-planner-media-panel">
-              <div className="dashboard-page-panel-head bunk-planner-panel-head">
-                <div>
-                  <h2>Planner preview</h2>
-                  <p>See the decision workspace in motion while you compare bunk scenarios.</p>
-                </div>
-                <span className="bunk-planner-threshold-pill">Live demo</span>
-              </div>
-
-              <div className="bunk-planner-media-frame">
-                <video
-                  className="bunk-planner-media-video"
-                  src={bunkPlannerPreviewVideo}
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  preload="metadata"
-                />
-              </div>
-
-              <div className="bunk-planner-media-notes">
-                <div className="bunk-planner-media-note">
-                  <span>Use before leave</span>
-                  <strong>Preview impact before you confirm a bunk</strong>
-                </div>
-                <div className="bunk-planner-media-note">
-                  <span>Best habit</span>
-                  <strong>Save risky choices as buffers instead of confirming immediately</strong>
-                </div>
-              </div>
-            </article>
           </div>
 
           <BunkPlannerSubjectGrid subjects={data.subjectCards} threshold={data.threshold} />

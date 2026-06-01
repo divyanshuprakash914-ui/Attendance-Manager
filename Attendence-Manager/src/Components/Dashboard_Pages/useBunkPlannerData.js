@@ -439,10 +439,10 @@ export default function useBunkPlannerData() {
             confirmedSkips > 0
               ? `${pluralize(confirmedSkips, "planned bunk")} already locked for this subject.`
               : tone === "green"
-              ? "Reserve this only after risky subjects are protected."
-              : tone === "amber"
-                ? "Close to the line. Use carefully."
-                : "Do not treat this as a bunk buffer right now.",
+                ? "Reserve this only after risky subjects are protected."
+                : tone === "amber"
+                  ? "Close to the line. Use carefully."
+                  : "Do not treat this as a bunk buffer right now.",
         };
       })
       .sort((left, right) => getToneWeight(right.tone) - getToneWeight(left.tone) || left.percentage - right.percentage);

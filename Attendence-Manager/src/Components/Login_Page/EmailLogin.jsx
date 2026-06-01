@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { API_URL } from "../../lib/api";
 
 export default function EmailLogin() {
   const [email, setEmail] = useState("");
@@ -15,7 +16,7 @@ export default function EmailLogin() {
     try {
       console.log("Sending email login request:", email);
 
-      const res = await fetch("http://localhost:8000/auth/email/request-link", {
+      const res = await fetch(`${API_URL}/auth/email/request-link`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

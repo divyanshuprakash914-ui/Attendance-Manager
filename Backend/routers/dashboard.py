@@ -2,7 +2,10 @@ import os
 import math
 import datetime
 import requests
-from fastapi import APIRouter, HTTPException
+
+from fastapi import APIRouter, HTTPException, Depends
+from auth.dependencies import require_user_or_api_token
+
 
 router = APIRouter(
     prefix="/dashboard",
@@ -109,7 +112,10 @@ WEEKDAYS = ["monday", "tuesday", "wednesday", "thursday", "friday"]
 def get_token():
     token = os.getenv("NEWTON_BEARER_TOKEN")
     if not token:
-        raise HTTPException(status_code=500, detail="NEWTON_BEARER_TOKEN missing in .env")
+        raise HTTPException(
+            status_code=500,
+            detail="NEWTON_BEARER_TOKEN missing in .env"
+        )
     return token
 
 
@@ -267,7 +273,7 @@ def simulate_leave_one_class(day_name, overall):
 
 
 @router.get("/overview")
-def dashboard_overview():
+def dashboard_overview(current_user=Depends(require_user_or_api_token)):
     overall = get_overall_attendance()
 
     overall_percentage = calc_percentage(overall["attended"], overall["total"])
@@ -359,7 +365,8 @@ def dashboard_overview():
 
     return {
         "user": {
-            "name": "Vani",
+            "name": current_user.get("name", "Student"),
+            "email": current_user.get("email"),
             "role": "Student",
         },
         "kpis": {
