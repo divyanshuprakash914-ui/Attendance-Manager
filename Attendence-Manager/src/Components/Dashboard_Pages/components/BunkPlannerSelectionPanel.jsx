@@ -1,3 +1,5 @@
+import bunkPlannerSelectionVideo from "../../../assets/bfeac01c-116d-11ee-b589-efdc95805700.mp4";
+
 function formatSelectedClasses(items) {
   if (!items.length) {
     return "No classes selected.";
@@ -55,6 +57,22 @@ export default function BunkPlannerSelectionPanel({
               <span>Final attendance</span>
               <strong>{scenario.afterOverall}</strong>
               <small>{scenario.label}</small>
+            </div>
+          </div>
+
+          <div className="bunk-planner-selection-media">
+            <video
+              className="bunk-planner-selection-video"
+              src={bunkPlannerSelectionVideo}
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
+            />
+            <div className="bunk-planner-selection-media-caption">
+              <span>Decision preview</span>
+              <strong>Review the impact, then confirm or keep it as a buffer.</strong>
             </div>
           </div>
 

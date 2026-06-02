@@ -156,49 +156,47 @@ function BunkPlannerPageContent() {
       </section>
 
       <section className="bunk-planner-workspace-grid">
-        <div className="bunk-planner-main-column">
-          <div className="bunk-planner-main-stage">
-            <BunkPlannerScenarioPanel
-              mode={mode}
-              onModeChange={handleModeChange}
-              threshold={data.threshold}
-              todayLabel={data.todayLabel}
-              classOptions={data.classOptions}
-              dayOptions={data.dayOptions}
-              selectedClassIds={effectiveSelectedClassIds}
-              selectedDayId={effectiveSelectedDayId}
-              onToggleClass={handleToggleClass}
-              onSelectDay={setSelectedDayId}
-              onPickRecommended={handlePickRecommended}
-              onSelectAllSafe={handleSelectAllSafe}
-              onResetSelection={handleResetSelection}
-            />
-          </div>
+        <div className="bunk-planner-top-grid">
+          <BunkPlannerScenarioPanel
+            mode={mode}
+            onModeChange={handleModeChange}
+            threshold={data.threshold}
+            todayLabel={data.todayLabel}
+            classOptions={data.classOptions}
+            dayOptions={data.dayOptions}
+            selectedClassIds={effectiveSelectedClassIds}
+            selectedDayId={effectiveSelectedDayId}
+            onToggleClass={handleToggleClass}
+            onSelectDay={setSelectedDayId}
+            onPickRecommended={handlePickRecommended}
+            onSelectAllSafe={handleSelectAllSafe}
+            onResetSelection={handleResetSelection}
+          />
 
-          <BunkPlannerSubjectGrid subjects={data.subjectCards} threshold={data.threshold} />
+          <BunkPlannerImpactPanel scenario={scenario} />
         </div>
 
-        <div className="bunk-planner-side-column">
-          <div className="bunk-planner-side-rail">
-            <BunkPlannerImpactPanel scenario={scenario} />
-            <BunkPlannerSelectionPanel
-              mode={mode}
-              scenario={scenario}
-              selectedClasses={selectedClasses}
-              selectedDay={selectedDay}
-              confirmedCount={data.confirmedPlans.length}
-              bufferCount={data.bufferPlans.length}
-              feedback={feedback?.selectionKey === currentSelectionKey ? feedback : null}
-              onConfirm={handleConfirmBunk}
-              onAddBuffer={handleAddBuffer}
-            />
-            <BunkPlannerRecoveryPanel
-              bestDay={data.bestDay}
-              protectedClasses={data.protectedClasses}
-              recoveryQueue={data.recoveryQueue}
-            />
-          </div>
+        <div className="bunk-planner-support-grid">
+          <BunkPlannerSelectionPanel
+            mode={mode}
+            scenario={scenario}
+            selectedClasses={selectedClasses}
+            selectedDay={selectedDay}
+            confirmedCount={data.confirmedPlans.length}
+            bufferCount={data.bufferPlans.length}
+            feedback={feedback?.selectionKey === currentSelectionKey ? feedback : null}
+            onConfirm={handleConfirmBunk}
+            onAddBuffer={handleAddBuffer}
+          />
+
+          <BunkPlannerRecoveryPanel
+            bestDay={data.bestDay}
+            protectedClasses={data.protectedClasses}
+            recoveryQueue={data.recoveryQueue}
+          />
         </div>
+
+        <BunkPlannerSubjectGrid subjects={data.subjectCards} threshold={data.threshold} />
       </section>
     </>
   );
